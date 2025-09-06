@@ -6,6 +6,13 @@ import java.util.Arrays;
  * Main class.
  */
 public class Main {
+
+    private static void swap(int[] numbers, int i, int j) {
+        int temp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = temp;
+    }
+
     private static void heapify(int[] numbers, int heapSize, int heapRootIndex) {
         while ((2 * heapRootIndex + 1) < heapSize) {
             int leftChild = 2 * heapRootIndex + 1;
@@ -19,9 +26,7 @@ public class Main {
             if (numbers[heapRootIndex] >= numbers[largest]) {
                 break;
             }
-            int temp = numbers[heapRootIndex];
-            numbers[heapRootIndex] = numbers[largest];
-            numbers[largest] = temp;
+            swap(numbers, heapRootIndex, largest);
             heapRootIndex = largest;
         }
     }
@@ -36,12 +41,9 @@ public class Main {
             heapify(numbers, numbers.length, i);
         }
         for (int i = numbers.length - 1; i > 0; i--) {
-            int temp = numbers[i];
-            numbers[i] = numbers[0];
-            numbers[0] = temp;
+            swap(numbers, i, 0);
             heapify(numbers, i, 0);
         }
-        System.out.println(Arrays.toString(numbers));
     }
 
     /**
@@ -52,5 +54,6 @@ public class Main {
     public static void main(String[] args) {
         int[] numbers = {5, 4, 3, 2, 1};
         heapsort(numbers);
+        System.out.println(Arrays.toString(numbers));
     }
 }
