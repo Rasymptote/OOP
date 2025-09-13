@@ -1,5 +1,8 @@
 package ru.nsu.babich;
 
+/**
+ * Class provides static methods for displaying game information.
+ */
 public class Console {
 
     public static void printWelcome() {

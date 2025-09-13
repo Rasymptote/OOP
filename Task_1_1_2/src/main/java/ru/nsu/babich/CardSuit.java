@@ -1,10 +1,10 @@
 package ru.nsu.babich;
 
 public enum CardSuit {
-    DIAMONDS ("Бубны"),
-    HEARTS ("Червы"),
-    SPADES ("Пики"),
-    CLUBS ("Трефы");
+    DIAMONDS("Бубны"),
+    HEARTS("Червы"),
+    SPADES("Пики"),
+    CLUBS("Трефы");
 
     private final String suit;
 
