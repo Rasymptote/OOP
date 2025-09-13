@@ -37,7 +37,7 @@ public class CardDeck {
         if (cards.isEmpty()) {
             resetDeck();
         }
-       return cards.remove(0);
+        return cards.remove(0);
     }
 
     /**

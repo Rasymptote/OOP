@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Class representing the human user player in the Blackjack game.
  */
-public class User extends Player{
+public class User extends Player {
     private final Scanner scanner;
 
     /**
@@ -34,7 +34,7 @@ public class User extends Player{
             while (!answer.equals(0)) {
                 if (answer.equals(1)) {
                     getHand().addCard(deck);
-                    System.out.printf("Вы открыли карту %s\n", getHand().cards.get(getHand().cards.size() - 1));
+                    System.out.printf("Вы открыли карту %s\n", getHand().getLastCard());
                     Console.printHands(getHand(), dealerHand);
                     if (getScore() > 21) {
                         break;

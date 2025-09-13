@@ -22,12 +22,12 @@ public class Dealer extends Player {
         System.out.println("Ход дилера");
         System.out.println("-------");
         getHand().revealCards();
-        System.out.printf("Дилер открывает закрытую карту %s\n", getHand().cards.get(getHand().cards.size() - 1));
+        System.out.printf("Дилер открывает закрытую карту %s\n", getHand().getLastCard());
         Console.printHands(playerHand, getHand());
 
         while (getScore() < 17) {
             getHand().addCard(deck);
-            System.out.printf("Дилер открывает карту %s\n", getHand().cards.get(getHand().cards.size() - 1));
+            System.out.printf("Дилер открывает карту %s\n", getHand().getLastCard());
             Console.printHands(playerHand, getHand());
             if (getScore() > 21) {
                 break;

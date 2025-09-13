@@ -50,6 +50,17 @@ public class Hand {
     }
 
     /**
+     * Returns the last card in the hand.
+     *
+     * @return the last Card object in the hand
+     */
+    public Card getLastCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
+        return this.cards.get(this.cards.size() - 1);
+    }
+    /**
      * Adds hidden card to the hand from the deck.
      *
      * @param deck the deck to draw the card from

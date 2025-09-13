@@ -1,5 +1,8 @@
 package ru.nsu.babich;
 
+/**
+ * The enum of card ranks.
+ */
 public enum CardRank {
     TWO("Двойка", 2),
     THREE("Тройка", 3),

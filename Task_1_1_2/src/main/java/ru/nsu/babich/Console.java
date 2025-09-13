@@ -55,7 +55,8 @@ public class Console {
      * @param dealerWins the total number of rounds won by the dealer
      */
     public static void printFinalScore(int userWins, int dealerWins) {
-        System.out.printf("Игра завершена! Финальный счет:\nВы %d : %d Дилер\n", userWins, dealerWins);
+        System.out.println("Игра завершена!");
+        System.out.printf("Финальный счет:\nВы %d : %d Дилер\n", userWins, dealerWins);
 
     }
 }

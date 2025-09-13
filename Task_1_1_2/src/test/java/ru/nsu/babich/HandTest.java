@@ -106,4 +106,21 @@ class HandTest {
         assertFalse(result.contains("=>"));
     }
 
+    @Test
+    void checkGetLastCard() {
+        hand.addCard(deck);
+        Card firstCard = hand.getLastCard();
+
+        hand.addCard(deck);
+        Card secondCard = hand.getLastCard();
+
+        assertNotEquals(firstCard, secondCard);
+        assertEquals(hand.cards.get(1), secondCard);
+
+        hand.addCard(deck);
+        Card thirdCard = hand.getLastCard();
+
+        assertEquals(hand.cards.get(2), thirdCard);
+        assertNotEquals(secondCard, thirdCard);
+    }
 }
