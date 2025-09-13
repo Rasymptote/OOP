@@ -60,6 +60,7 @@ public class Hand {
         }
         return this.cards.get(this.cards.size() - 1);
     }
+
     /**
      * Adds hidden card to the hand from the deck.
      *

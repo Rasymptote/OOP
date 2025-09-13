@@ -1,4 +1,5 @@
 package ru.nsu.babich;
+
 /**
  * The enum of card suits.
  */
