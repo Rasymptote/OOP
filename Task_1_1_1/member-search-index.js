@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"ru.nsu.babich","c":"Main","l":"heapsort(int[])"},{"p":"ru.nsu.babich","c":"Main","l":"Main()","u":"%3Cinit%3E()"},{"p":"ru.nsu.babich","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
+memberSearchIndex = [{"p":"ru.nsu.babich","c":"Heapsort","l":"Heapsort()","u":"%3Cinit%3E()"},{"p":"ru.nsu.babich","c":"Heapsort","l":"heapsort(int[])"},{"p":"ru.nsu.babich","c":"Main","l":"Main()","u":"%3Cinit%3E()"},{"p":"ru.nsu.babich","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
