@@ -36,10 +36,6 @@ public class Token {
         return value;
     }
 
-    public boolean isOperator() {
-        return type.isOperator();
-    }
-
     @Override
     public String toString() {
         return type + (value.isEmpty() ? "" : "(" + value + ")");

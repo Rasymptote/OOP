@@ -18,7 +18,7 @@ public class Div extends BinaryOperation {
     public Expression derivative(String variableName) {
         var leftD = left.derivative(variableName);
         var rightD = right.derivative(variableName);
-        return new Div(new Sub(leftD, rightD), new Mul(right, right));
+        return new Div(new Sub(new Mul(leftD, right), new Mul(left, rightD)), new Mul(right, right));
     }
 
     public int eval(String context) {
