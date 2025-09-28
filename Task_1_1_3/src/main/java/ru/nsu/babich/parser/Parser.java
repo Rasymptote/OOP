@@ -20,58 +20,83 @@ public class Parser {
     }
 
     private Expression parseExpression() {
-        if (lexer.peek().getType() == TokenType.L_PAREN) {
-            return parseOperation();
+        var expression = parseAddSub();
+        if (lexer.peek().getType() != TokenType.EOF) {
+            throw new RuntimeException("Unexpected token \"" + lexer.peek().getType() + "\"");
         }
-        return parseAtom();
+        return expression;
     }
 
-    private Expression parseOperation() {
-        lexer.consume();
-        var left = parseExpression();
-        if (!lexer.peek().isOperator()) {
-            throw new RuntimeException("Unexpected token \"" + lexer.peek().getValue() + "\"");
+    private Expression parseAddSub() {
+        Expression left = parseMulDiv();
+        while (true) {
+            var operator = lexer.peek();
+            switch (operator.getType()) {
+                case PLUS -> {
+                    lexer.consume();
+                    left = new Add(left, parseMulDiv());
+                }
+                case MINUS -> {
+                    lexer.consume();
+                    left = new Sub(left, parseMulDiv());
+                }
+                default -> {
+                    return left;
+                }
+            }
         }
-        var operator = lexer.peek().getType();
-        lexer.consume();
-        var right = parseExpression();
-        if (lexer.peek().getType() != TokenType.R_PAREN) {
-            throw new RuntimeException("Unexpected token \"" + lexer.peek().getValue() + "\"");
-        }
-        lexer.consume();
-        return createOperation(operator, left, right);
     }
 
-    private Expression parseAtom() {
+    private Expression parseMulDiv() {
+        Expression left = parseAtomOrParen();
+        while (true) {
+            var operator = lexer.peek();
+            switch (operator.getType()) {
+                case MULTIPLY -> {
+                    lexer.consume();
+                    left = new Mul(left, parseAtomOrParen());
+                }
+                case DIVIDE -> {
+                    lexer.consume();
+                    left = new Div(left, parseAtomOrParen());
+                }
+                default -> {
+                    return left;
+                }
+            }
+        }
+    }
+
+    private Expression parseAtomOrParen() {
         var token = lexer.peek();
 
-        var result = switch (token.getType()) {
-            case NUMBER -> parseNumber();
-            case VARIABLE -> parseVariable();
-            default -> throw new RuntimeException("Unexpected token in atom: " + token);
-        };
-
-        lexer.consume();
-        return result;
+        switch (token.getType()) {
+            case NUMBER:
+                return parseNumber();
+            case VARIABLE:
+                return parseVariable();
+            case L_PAREN:
+                lexer.consume();
+                Expression expression = parseAddSub();
+                if (lexer.peek().getType() != TokenType.R_PAREN) {
+                    throw new RuntimeException("Unexpected token \"" + lexer.peek().getType() + "\"");
+                }
+                lexer.consume();
+                return expression;
+            default:
+                throw new RuntimeException("Unexpected token \"" + token + "\"");
+        }
     }
 
     private Expression parseNumber() {
         var token = lexer.peek();
-        return new Number(Double.parseDouble(token.getValue()));
+        lexer.consume();
+        return new Number(Integer.parseInt(token.getValue()));
     }
 
     private Expression parseVariable() {
         var token = lexer.peek();
+        lexer.consume();
         return new Variable(token.getValue());
-    }
-
-    private Expression createOperation(TokenType operator, Expression left, Expression right) {
-        return switch (operator) {
-            case PLUS -> new Add(left, right);
-            case MINUS -> new Sub(left, right);
-            case MULTIPLY -> new Mul(left, right);
-            case DIVIDE -> new Div(left, right);
-            default -> throw new RuntimeException("Unsupported operator: " + operator);
-        };
     }
 }

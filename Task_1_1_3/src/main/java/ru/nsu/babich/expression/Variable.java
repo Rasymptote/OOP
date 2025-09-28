@@ -16,21 +16,30 @@ public class Variable extends Expression {
         return new Number(0);
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         try (Scanner scanner = new Scanner(context)) {
             scanner.useDelimiter("[= ;]+");
 
             while (scanner.hasNext()) {
                 String currentVar = scanner.next();
                 if (currentVar.equals(variable) && scanner.hasNextDouble()) {
-                    return scanner.nextDouble();
+                    return scanner.nextInt();
                 }
                 if (scanner.hasNext()) {
                     scanner.next();
                 }
             }
-            throw new IllegalArgumentException("Variable '" + variable + "' not found");
+            throw new IllegalArgumentException("Variable \"" + variable + "\" not found");
         }
+    }
+
+    public Expression simplify() {
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Variable var && variable.equals(var.variable);
     }
 
     @Override

@@ -12,8 +12,26 @@ public class Mul extends BinaryOperation {
         return new Add(new Mul(leftD, right), new Mul(left, rightD));
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         return left.eval(context) * right.eval(context);
+    }
+
+    public Expression simplify() {
+        var leftS = left.simplify();
+        var rightS = right.simplify();
+        if (leftS instanceof Number leftN && rightS instanceof Number rightN) {
+            return new Number(leftN.eval("") * rightN.eval(""));
+        }
+        if (leftS.equals(new Number(0)) || rightS.equals(new Number(0))) {
+            return new Number(0);
+        }
+        if (leftS.equals(new Number(1))) {
+            return rightS;
+        }
+        if (rightS.equals(new Number(1))) {
+            return leftS;
+        }
+        return new Mul(leftS, rightS);
     }
 
     @Override

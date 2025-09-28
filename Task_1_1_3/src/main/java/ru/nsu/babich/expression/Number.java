@@ -2,9 +2,9 @@ package ru.nsu.babich.expression;
 
 public class Number extends Expression {
 
-    private final double number;
+    private final int number;
 
-    public Number(double number) {
+    public Number(int number) {
         this.number = number;
     }
 
@@ -12,12 +12,21 @@ public class Number extends Expression {
         return new Number(0);
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         return number;
+    }
+
+    public Expression simplify() {
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Number num && number == num.number;
     }
 
     @Override
     public String toString() {
-        return Double.toString(number);
+        return Integer.toString(number);
     }
 }

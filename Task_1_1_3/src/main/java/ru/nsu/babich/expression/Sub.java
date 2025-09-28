@@ -12,8 +12,23 @@ public class Sub extends BinaryOperation {
         return new Sub(leftD, rightD);
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         return left.eval(context) - right.eval(context);
+    }
+
+    public Expression simplify() {
+        var leftS = left.simplify();
+        var rightS = right.simplify();
+        if (leftS instanceof Number leftN && rightS instanceof Number rightN) {
+            return new Number(leftN.eval("") - rightN.eval(""));
+        }
+        if (leftS.equals(rightS)) {
+            return new Number(0);
+        }
+        if (rightS.equals(new Number(0))) {
+            return leftS;
+        }
+        return new Sub(leftS, rightS);
     }
 
     @Override

@@ -12,8 +12,23 @@ public class Add extends BinaryOperation {
         return new Add(leftD, rightD);
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         return left.eval(context) + right.eval(context);
+    }
+
+    public Expression simplify() {
+        var leftS = left.simplify();
+        var rightS = right.simplify();
+        if (leftS instanceof Number leftN && rightS instanceof Number rightN) {
+            return new Number(leftN.eval("") + rightN.eval(""));
+        }
+        if (leftS.equals(new Number(0))) {
+            return rightS;
+        }
+        if (rightS.equals(new Number(0))) {
+            return leftS;
+        }
+        return new Add(leftS, rightS);
     }
 
     @Override

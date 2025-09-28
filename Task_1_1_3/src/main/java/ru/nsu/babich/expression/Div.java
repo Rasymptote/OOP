@@ -12,11 +12,29 @@ public class Div extends BinaryOperation {
         return new Div(new Sub(leftD, rightD), new Mul(right, right));
     }
 
-    public double eval(String context) {
+    public int eval(String context) {
         if (right.eval(context) == 0) {
             throw new ArithmeticException("Division by zero");
         }
         return left.eval(context) / right.eval(context);
+    }
+
+    public Expression simplify() {
+        var leftS = left.simplify();
+        var rightS = right.simplify();
+        if (leftS instanceof Number leftN && rightS instanceof Number rightN) {
+            return new Number(leftN.eval("") / rightN.eval(""));
+        }
+        if (leftS.equals(rightS)) {
+            return new Number(1);
+        }
+        if (rightS.equals(new Number(1))) {
+            return leftS;
+        }
+        if (leftS.equals(new Number(0))) {
+            return new Number(0);
+        }
+        return new Div(leftS, rightS);
     }
 
     @Override

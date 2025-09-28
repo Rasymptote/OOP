@@ -22,8 +22,14 @@ public abstract class Expression {
 
     /**
      * Evaluates the expression in the provided context.
-     * @param context Context containing variable and its value
-     * @return The result of calculation
+     * @param context Context containing variable and its value.
+     * @return The result of calculation.
      */
-    public abstract double eval(String context);
+    public abstract int eval(String context);
+
+    /**
+     * Simplifies the expression.
+     * @return Simplified expression.
+     */
+    public abstract Expression simplify();
 }
