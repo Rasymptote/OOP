@@ -15,12 +15,19 @@ public class Div extends BinaryOperation {
         super(left, right);
     }
 
+    /**
+     * Returns derivative of division.
+     */
     public Expression derivative(String variableName) {
         var leftD = left.derivative(variableName);
         var rightD = right.derivative(variableName);
-        return new Div(new Sub(new Mul(leftD, right), new Mul(left, rightD)), new Mul(right, right));
+        return new Div(new Sub(new Mul(leftD, right),
+                new Mul(left, rightD)), new Mul(right, right));
     }
 
+    /**
+     * Evaluates division in provided context.
+     */
     public int eval(String context) {
         if (right.eval(context) == 0) {
             throw new ArithmeticException("Division by zero");
@@ -28,6 +35,9 @@ public class Div extends BinaryOperation {
         return left.eval(context) / right.eval(context);
     }
 
+    /**
+     * Simplifies division expression.
+     */
     public Expression simplify() {
         var leftS = left.simplify();
         var rightS = right.simplify();

@@ -16,6 +16,9 @@ public class Number extends Expression {
         this.number = number;
     }
 
+    /**
+     * Returns derivative of number.
+     */
     public Expression derivative(String variableName) {
         return new Number(0);
     }

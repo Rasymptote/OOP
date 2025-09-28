@@ -15,16 +15,25 @@ public class Sub extends BinaryOperation {
        super(left, right);
     }
 
+    /**
+     * Returns derivative of substraction.
+     */
     public Expression derivative(String variableName) {
         var leftD = left.derivative(variableName);
         var rightD = right.derivative(variableName);
         return new Sub(leftD, rightD);
     }
 
+    /**
+     * Evaluates substraction in provided context.
+     */
     public int eval(String context) {
         return left.eval(context) - right.eval(context);
     }
 
+    /**
+     * Simplifies substraction expression.
+     */
     public Expression simplify() {
         var leftS = left.simplify();
         var rightS = right.simplify();

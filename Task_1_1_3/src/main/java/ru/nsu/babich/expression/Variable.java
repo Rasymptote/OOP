@@ -17,6 +17,9 @@ public class Variable extends Expression {
         this.variable = variable;
     }
 
+    /**
+     * Returns derivative of variable.
+     */
     public Expression derivative(String variableName) {
         if (variable.equals(variableName)) {
             return new Number(1);
@@ -24,6 +27,9 @@ public class Variable extends Expression {
         return new Number(0);
     }
 
+    /**
+     * Evaluates variable value in provided context.
+     */
     public int eval(String context) {
         try (Scanner scanner = new Scanner(context)) {
             scanner.useDelimiter("[= ;]+");

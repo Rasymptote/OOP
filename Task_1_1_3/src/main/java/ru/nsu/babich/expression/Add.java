@@ -15,16 +15,25 @@ public class Add extends BinaryOperation {
         super(left, right);
     }
 
+    /**
+     * Returns derivative of addition.
+     */
     public Expression derivative(String variableName) {
         var leftD = left.derivative(variableName);
         var rightD = right.derivative(variableName);
         return new Add(leftD, rightD);
     }
 
+    /**
+     * Evaluates addition in provided context.
+     */
     public int eval(String context) {
         return left.eval(context) + right.eval(context);
     }
 
+    /**
+     * Simplifies addition expression.
+     */
     public Expression simplify() {
         var leftS = left.simplify();
         var rightS = right.simplify();
