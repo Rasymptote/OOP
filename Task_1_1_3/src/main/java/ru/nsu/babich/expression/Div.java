@@ -1,7 +1,16 @@
 package ru.nsu.babich.expression;
 
+/**
+ * Represents division operation.
+ */
 public class Div extends BinaryOperation {
 
+    /**
+     * Constructs division operation with left and right operands.
+     *
+     * @param left Dividend.
+     * @param right Divisor.
+     */
     public Div(Expression left, Expression right) {
         super(left, right);
     }

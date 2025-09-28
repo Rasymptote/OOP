@@ -1,7 +1,16 @@
 package ru.nsu.babich.expression;
 
+/**
+ * Represents multiplication operation.
+ */
 public class Mul extends BinaryOperation {
 
+    /**
+     * Constructs multiplication operation with left and right operands.
+     *
+     * @param left Left multiplicand.
+     * @param right Right multiplicand.
+     */
     public Mul(Expression left, Expression right) {
        super(left, right);
     }

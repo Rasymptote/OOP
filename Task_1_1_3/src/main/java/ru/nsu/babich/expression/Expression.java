@@ -22,6 +22,7 @@ public abstract class Expression {
 
     /**
      * Evaluates the expression in the provided context.
+     *
      * @param context Context containing variable and its value.
      * @return The result of calculation.
      */
@@ -29,6 +30,7 @@ public abstract class Expression {
 
     /**
      * Simplifies the expression.
+     *
      * @return Simplified expression.
      */
     public abstract Expression simplify();

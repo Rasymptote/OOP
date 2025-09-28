@@ -1,9 +1,17 @@
 package ru.nsu.babich.expression;
 
+/**
+ * Represents a constant numerical value.
+ */
 public class Number extends Expression {
 
     private final int number;
 
+    /**
+     * Constructs a new number with given value.
+     *
+     * @param number Value of the number.
+     */
     public Number(int number) {
         this.number = number;
     }

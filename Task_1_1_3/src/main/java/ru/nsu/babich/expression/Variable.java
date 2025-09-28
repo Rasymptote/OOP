@@ -2,9 +2,17 @@ package ru.nsu.babich.expression;
 
 import java.util.Scanner;
 
+/**
+ * Represents a variable in expression.
+ */
 public class Variable extends Expression {
     private final String variable;
 
+    /**
+     * Constructs a variable with the specified name.
+     *
+     * @param variable The name of the variable.
+     */
     public Variable(String variable) {
         this.variable = variable;
     }

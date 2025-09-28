@@ -1,7 +1,16 @@
 package ru.nsu.babich.expression;
 
+/**
+ * Represents addition operation.
+ */
 public class Add extends BinaryOperation {
 
+    /**
+     * Constructs addition operation with left and right operands.
+     *
+     * @param left Left addend.
+     * @param right Right addend.
+     */
     public Add(Expression left, Expression right) {
         super(left, right);
     }

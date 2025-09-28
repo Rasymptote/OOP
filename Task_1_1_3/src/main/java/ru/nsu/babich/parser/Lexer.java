@@ -1,16 +1,31 @@
 package ru.nsu.babich.parser;
 
+/**
+ * Represents lexical analyzer for mathematical expressions.
+ * Converts input string into a sequence of tokens for parsing.
+ */
 public class Lexer {
     private final String input;
     private int position;
     private Token currentToken;
 
+    /**
+     * Constructs a lexer with the given input string.
+     * Removes all whitespace characters from the input.
+     *
+     * @param input The expression.
+     */
     public Lexer(String input) {
         this.input = input.replaceAll("\\s", "");
         this.position = 0;
         this.currentToken = null;
     }
-    
+
+    /**
+     * Peeks at the next token without consuming it.
+     *
+     * @return The next token without advancing the position.
+     */
     public Token peek() {
         if (currentToken == null) {
             return consume();
@@ -19,6 +34,11 @@ public class Lexer {
         return currentToken;
     }
 
+    /**
+     * Consumes the current token and advances to the next one.
+     *
+     * @return The consumed token.
+     */
     public Token consume() {
         char current = peekCharacter();
 

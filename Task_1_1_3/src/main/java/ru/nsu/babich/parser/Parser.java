@@ -8,13 +8,28 @@ import ru.nsu.babich.expression.Number;
 import ru.nsu.babich.expression.Sub;
 import ru.nsu.babich.expression.Variable;
 
+/**
+ * Represents a parser for mathematical expressions.
+ * Converts a sequence of tokens into an abstract syntax tree (AST) of expression objects.
+ * Uses recursive descent parsing with operator precedence.
+ */
 public class Parser {
     private final Lexer lexer;
 
+    /**
+     * Constructs a parser with the given input string.
+     *
+     * @param input The expression.
+     */
     public Parser(String input) {
         this.lexer = new Lexer(input);
     }
 
+    /**
+     * Parses the entire expression and returns the root of the AST.
+     *
+     * @return The root expression node of the parsed AST.
+     */
     public Expression parse() {
         return parseExpression();
     }

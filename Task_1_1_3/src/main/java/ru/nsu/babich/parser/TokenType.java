@@ -2,6 +2,9 @@ package ru.nsu.babich.parser;
 
 import java.util.Arrays;
 
+/**
+ * TokenType enum.
+ */
 public enum TokenType {
     NUMBER,
     VARIABLE,

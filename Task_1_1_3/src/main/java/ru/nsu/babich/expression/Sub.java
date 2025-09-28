@@ -1,7 +1,16 @@
 package ru.nsu.babich.expression;
 
+/**
+ * Represents substraction operation.
+ */
 public class Sub extends BinaryOperation {
 
+    /**
+     * Constructs subtraction operation with left and right operands.
+     *
+     * @param left Minuend.
+     * @param right Subtrahend.
+     */
     public Sub(Expression left, Expression right) {
        super(left, right);
     }
