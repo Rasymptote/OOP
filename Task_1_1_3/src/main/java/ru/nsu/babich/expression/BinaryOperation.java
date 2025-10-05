@@ -6,8 +6,8 @@ package ru.nsu.babich.expression;
  */
 public abstract class BinaryOperation extends Expression {
 
-    public final Expression left;
-    public final Expression right;
+    protected final Expression left;
+    protected final Expression right;
 
     /**
      * Constructs a new binary expression.

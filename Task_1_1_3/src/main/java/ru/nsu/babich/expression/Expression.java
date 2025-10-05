@@ -6,13 +6,6 @@ package ru.nsu.babich.expression;
 public abstract class Expression {
 
     /**
-     * Prints the expression.
-     */
-    public void print() {
-        System.out.println(this);
-    }
-
-    /**
      * Calculates the derivative of expression with respect to specified variable.
      *
      * @param variableName The name of the variable.
