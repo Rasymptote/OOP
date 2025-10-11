@@ -1,19 +1,16 @@
 package ru.nsu.babich;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Represents a graph via adjacency list.
  */
 public class AdjacencyList implements Graph {
-    private static final Comparator<Vertex> VERTEX_COMPARATOR =
-            Comparator.comparing(Vertex::id);
     private final Map<Vertex, Set<Vertex>> adjList;
 
     /**
@@ -25,7 +22,7 @@ public class AdjacencyList implements Graph {
 
     @Override
     public void addVertex(Vertex vertex) {
-        adjList.putIfAbsent(vertex, new TreeSet<>(VERTEX_COMPARATOR));
+        adjList.putIfAbsent(vertex, new HashSet<>());
     }
 
     @Override
@@ -58,13 +55,14 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
+    public List<Vertex> getVertices() {
+        return new ArrayList<>(adjList.keySet());
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
-        for (Vertex vertex : adjList.keySet().stream()
-                .sorted(VERTEX_COMPARATOR)
-                .toList()) {
-
+        for (Vertex vertex : adjList.keySet()) {
             sb.append(String.format("%s -> %s\n", vertex, adjList.get(vertex)));
         }
         return sb.toString();

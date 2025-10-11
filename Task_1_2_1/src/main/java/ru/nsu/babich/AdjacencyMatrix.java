@@ -3,6 +3,7 @@ package ru.nsu.babich;
 import ru.nsu.babich.exceptions.GraphEdgeException;
 import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdjacencyMatrix implements Graph {
     private final Matrix adjMatrix;
@@ -65,6 +66,11 @@ public class AdjacencyMatrix implements Graph {
            }
        }
        return neighbours;
+    }
+
+    @Override
+    public List<Vertex> getVertices() {
+        return new ArrayList<>(vertices);
     }
 
     @Override
