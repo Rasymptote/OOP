@@ -1,0 +1,74 @@
+package ru.nsu.babich;
+
+import ru.nsu.babich.exceptions.GraphEdgeException;
+import ru.nsu.babich.exceptions.GraphVertexException;
+import java.util.ArrayList;
+
+public class AdjacencyMatrix implements Graph {
+    private final Matrix adjMatrix;
+    private final ArrayList<Vertex> vertices;
+
+    public AdjacencyMatrix() {
+        this.adjMatrix = new Matrix();
+        this.vertices = new ArrayList<>();
+    }
+
+    @Override
+    public void addVertex(Vertex vertex) {
+        if (!vertices.contains(vertex)) {
+            vertices.add(vertex);
+            adjMatrix.addRow();
+            adjMatrix.addCol();
+        }
+    }
+
+    @Override
+    public void deleteVertex(Vertex vertex) {
+        int index = vertices.indexOf(vertex);
+        if (index == -1) {
+            throw new GraphVertexException(vertex);
+        }
+        vertices.remove(vertex);
+        adjMatrix.removeRow(index);
+        adjMatrix.removeCol(index);
+    }
+
+    @Override
+    public void addEdge(Edge edge) {
+        addVertex(edge.from());
+        addVertex(edge.to());
+        int fromIndex = vertices.indexOf(edge.from());
+        int toIndex = vertices.indexOf(edge.to());
+        adjMatrix.set(fromIndex, toIndex, 1);
+    }
+
+    @Override
+    public void deleteEdge(Edge edge) {
+        int fromIndex = vertices.indexOf(edge.from());
+        int toIndex = vertices.indexOf(edge.to());
+        if (fromIndex == -1 || toIndex == -1) {
+            throw new GraphEdgeException(edge);
+        }
+        adjMatrix.set(fromIndex, toIndex, 0);
+    }
+
+    @Override
+    public ArrayList<Vertex> getVertexNeighbours(Vertex vertex) {
+       int index = vertices.indexOf(vertex);
+       if (index == -1) {
+           throw new GraphVertexException(vertex);
+       }
+       ArrayList<Vertex> neighbours = new ArrayList<>();
+       for (int col = 0; col < adjMatrix.getWidth(); col++) {
+           if (adjMatrix.get(index, col) == 1) {
+               neighbours.add(vertices.get(col));
+           }
+       }
+       return neighbours;
+    }
+
+    @Override
+    public String toString() {
+        return adjMatrix.toString();
+    }
+}
