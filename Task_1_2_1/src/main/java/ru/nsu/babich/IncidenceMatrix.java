@@ -5,15 +5,24 @@ import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a graph via incidence matrix.
+ */
 public class IncidenceMatrix implements Graph {
     private final Matrix incMatrix;
     private final ArrayList<Vertex> vertices;
 
+    /**
+     * Constructs an incidence matrix.
+     */
     public IncidenceMatrix() {
         this.incMatrix = new Matrix();
         this.vertices = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addVertex(Vertex vertex) {
         if (!vertices.contains(vertex)) {
@@ -22,6 +31,9 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteVertex(Vertex vertex) {
         int index = vertices.indexOf(vertex);
@@ -37,6 +49,9 @@ public class IncidenceMatrix implements Graph {
         incMatrix.removeRow(index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addEdge(Edge edge) {
         addVertex(edge.from());
@@ -60,6 +75,9 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteEdge(Edge edge) {
         int fromIndex = vertices.indexOf(edge.from());
@@ -77,6 +95,9 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Vertex> getVertexNeighbours(Vertex vertex) {
         int index = vertices.indexOf(vertex);
@@ -96,6 +117,9 @@ public class IncidenceMatrix implements Graph {
         return neighbours;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Vertex> getVertices() {
         return new ArrayList<>(vertices);

@@ -14,17 +14,23 @@ public class AdjacencyList implements Graph {
     private final Map<Vertex, Set<Vertex>> adjList;
 
     /**
-     * Constructs adjacency list.
+     * Constructs an adjacency list.
      */
     public AdjacencyList() {
         adjList = new HashMap<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addVertex(Vertex vertex) {
         adjList.putIfAbsent(vertex, new HashSet<>());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteVertex(Vertex vertex) {
         adjList.remove(vertex);
@@ -33,6 +39,9 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addEdge(Edge edge) {
         addVertex(edge.from());
@@ -40,6 +49,9 @@ public class AdjacencyList implements Graph {
         adjList.get(edge.from()).add(edge.to());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteEdge(Edge edge) {
         Set<Vertex> neighbors = adjList.get(edge.from());
@@ -48,12 +60,18 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Vertex> getVertexNeighbours(Vertex vertex) {
         Set<Vertex> neighbors = adjList.get(vertex);
         return neighbors != null ? new ArrayList<>(neighbors) : new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Vertex> getVertices() {
         return new ArrayList<>(adjList.keySet());

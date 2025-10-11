@@ -5,15 +5,24 @@ import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a graph via adjacency matrix.
+ */
 public class AdjacencyMatrix implements Graph {
     private final Matrix adjMatrix;
     private final ArrayList<Vertex> vertices;
 
+    /**
+     * Constructs an adjacency matrix.
+     */
     public AdjacencyMatrix() {
         this.adjMatrix = new Matrix();
         this.vertices = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addVertex(Vertex vertex) {
         if (!vertices.contains(vertex)) {
@@ -23,6 +32,9 @@ public class AdjacencyMatrix implements Graph {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteVertex(Vertex vertex) {
         int index = vertices.indexOf(vertex);
@@ -34,6 +46,9 @@ public class AdjacencyMatrix implements Graph {
         adjMatrix.removeCol(index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addEdge(Edge edge) {
         addVertex(edge.from());
@@ -43,6 +58,9 @@ public class AdjacencyMatrix implements Graph {
         adjMatrix.set(fromIndex, toIndex, 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteEdge(Edge edge) {
         int fromIndex = vertices.indexOf(edge.from());
@@ -53,6 +71,9 @@ public class AdjacencyMatrix implements Graph {
         adjMatrix.set(fromIndex, toIndex, 0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArrayList<Vertex> getVertexNeighbours(Vertex vertex) {
        int index = vertices.indexOf(vertex);
@@ -68,6 +89,9 @@ public class AdjacencyMatrix implements Graph {
        return neighbours;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Vertex> getVertices() {
         return new ArrayList<>(vertices);

@@ -1,16 +1,28 @@
 package ru.nsu.babich;
 
+/**
+ * Represents a dynamic matrix of integers.
+ */
 public class Matrix {
     private int rows;
     private int cols;
     private int[][] data;
 
+    /**
+     * Constructs a matrix with specified dimensions.
+     *
+     * @param rows Number of rows.
+     * @param cols Number of columns.
+     */
     public Matrix(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         this.data = new int[rows][cols];
     }
 
+    /**
+     * Constructs an empty matrix.
+     */
     public Matrix() {
         this(0, 0);
     }
