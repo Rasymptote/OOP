@@ -1,9 +1,9 @@
-package ru.nsu.babich;
+package ru.nsu.babich.exceptions;
 
 /**
  * An exception occurred when failed to read graph data.
  */
-public class GraphReadException extends RuntimeException {
+public class GraphReadException extends GraphException {
 
     /**
      * Creates an exception.

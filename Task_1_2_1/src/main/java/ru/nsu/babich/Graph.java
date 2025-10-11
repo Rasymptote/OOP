@@ -1,5 +1,6 @@
 package ru.nsu.babich;
 
+import ru.nsu.babich.exceptions.GraphReadException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
