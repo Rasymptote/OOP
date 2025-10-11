@@ -1,5 +1,8 @@
 package ru.nsu.babich;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -48,5 +51,21 @@ public interface Graph {
      *
      * @param filename The path to the file containing graph data.
      */
-    void readFile(String filename);
+    default void readFile(String filename) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] tokens = line.split(" ");
+                if (tokens.length == 2) {
+                    Vertex vertex1 = new Vertex(tokens[0]);
+                    Vertex vertex2 = new Vertex(tokens[1]);
+                    addVertex(vertex1);
+                    addVertex(vertex2);
+                    addEdge(new Edge(vertex1, vertex2));
+                }
+            }
+        } catch (IOException e) {
+            throw new GraphReadException(e.getMessage());
+        }
+    }
 }
