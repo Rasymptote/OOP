@@ -1,7 +1,5 @@
 package ru.nsu.babich;
 
-import ru.nsu.babich.exceptions.GraphCycleException;
-import ru.nsu.babich.exceptions.GraphReadException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import ru.nsu.babich.exceptions.GraphCycleException;
+import ru.nsu.babich.exceptions.GraphReadException;
 
 /**
  * Represents an unweighted oriented graph.

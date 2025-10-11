@@ -1,9 +1,9 @@
 package ru.nsu.babich;
 
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.babich.exceptions.GraphEdgeException;
+import ru.nsu.babich.exceptions.GraphVertexException;
 
 /**
  * Represents a graph via incidence matrix.

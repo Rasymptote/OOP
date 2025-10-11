@@ -89,7 +89,7 @@ public class Matrix {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rows; i ++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 sb.append(String.format("%s ", data[i][j]));
             }

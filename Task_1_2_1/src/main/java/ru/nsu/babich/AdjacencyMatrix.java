@@ -1,9 +1,9 @@
 package ru.nsu.babich;
 
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.babich.exceptions.GraphEdgeException;
+import ru.nsu.babich.exceptions.GraphVertexException;
 
 /**
  * Represents a graph via adjacency matrix.
@@ -76,17 +76,17 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public ArrayList<Vertex> getVertexNeighbours(Vertex vertex) {
-       int index = vertices.indexOf(vertex);
-       if (index == -1) {
-           throw new GraphVertexException(vertex);
-       }
-       ArrayList<Vertex> neighbours = new ArrayList<>();
-       for (int col = 0; col < adjMatrix.getWidth(); col++) {
+        int index = vertices.indexOf(vertex);
+        if (index == -1) {
+            throw new GraphVertexException(vertex);
+        }
+        ArrayList<Vertex> neighbours = new ArrayList<>();
+        for (int col = 0; col < adjMatrix.getWidth(); col++) {
            if (adjMatrix.get(index, col) == 1) {
                neighbours.add(vertices.get(col));
            }
-       }
-       return neighbours;
+        }
+        return neighbours;
     }
 
     /**

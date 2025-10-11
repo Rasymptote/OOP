@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.babich.exceptions.GraphCycleException;
 import ru.nsu.babich.exceptions.GraphEdgeException;
 import ru.nsu.babich.exceptions.GraphVertexException;
-import java.util.List;
 
 abstract class GraphTest {
     protected Graph graph;
