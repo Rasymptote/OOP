@@ -1,5 +1,7 @@
 package ru.nsu.babich;
 
+import ru.nsu.babich.exceptions.GraphEdgeException;
+import ru.nsu.babich.exceptions.GraphVertexException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,7 +35,10 @@ public class AdjacencyList implements Graph {
      */
     @Override
     public void deleteVertex(Vertex vertex) {
-        adjList.remove(vertex);
+        var removed = adjList.remove(vertex);
+        if (removed == null) {
+            throw new GraphVertexException(vertex);
+        }
         for (Set<Vertex> neighbors : adjList.values()) {
             neighbors.remove(vertex);
         }
@@ -56,7 +61,12 @@ public class AdjacencyList implements Graph {
     public void deleteEdge(Edge edge) {
         Set<Vertex> neighbors = adjList.get(edge.from());
         if (neighbors != null) {
-            neighbors.remove(edge.to());
+            var removed = neighbors.remove(edge.to());
+            if (!removed) {
+                throw new GraphEdgeException(edge);
+            }
+        } else {
+            throw new GraphEdgeException(edge);
         }
     }
 
@@ -66,7 +76,10 @@ public class AdjacencyList implements Graph {
     @Override
     public List<Vertex> getVertexNeighbours(Vertex vertex) {
         Set<Vertex> neighbors = adjList.get(vertex);
-        return neighbors != null ? new ArrayList<>(neighbors) : new ArrayList<>();
+        if (neighbors == null) {
+            throw new GraphVertexException(vertex);
+        }
+        return new ArrayList<>(neighbors);
     }
 
     /**
