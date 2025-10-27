@@ -2,8 +2,7 @@ package ru.nsu.babich;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
+import ru.nsu.babich.exceptions.GraphException;
 
 /**
  * Represents a graph via adjacency matrix.
@@ -39,7 +38,7 @@ public class AdjacencyMatrix implements Graph {
     public void deleteVertex(Vertex vertex) {
         int index = vertices.indexOf(vertex);
         if (index == -1) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         vertices.remove(vertex);
         adjMatrix.removeRow(index);
@@ -66,7 +65,7 @@ public class AdjacencyMatrix implements Graph {
         int fromIndex = vertices.indexOf(edge.from());
         int toIndex = vertices.indexOf(edge.to());
         if (fromIndex == -1 || toIndex == -1) {
-            throw new GraphEdgeException(edge);
+            throw new GraphException(String.format("No such edge: %s", edge));
         }
         adjMatrix.set(fromIndex, toIndex, 0);
     }
@@ -78,7 +77,7 @@ public class AdjacencyMatrix implements Graph {
     public ArrayList<Vertex> getVertexNeighbours(Vertex vertex) {
         int index = vertices.indexOf(vertex);
         if (index == -1) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         ArrayList<Vertex> neighbours = new ArrayList<>();
         for (int col = 0; col < adjMatrix.getWidth(); col++) {

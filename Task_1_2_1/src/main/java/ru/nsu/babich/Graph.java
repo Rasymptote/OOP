@@ -9,8 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import ru.nsu.babich.exceptions.GraphCycleException;
-import ru.nsu.babich.exceptions.GraphReadException;
+import ru.nsu.babich.exceptions.GraphException;
 
 /**
  * Represents an unweighted oriented graph.
@@ -79,7 +78,7 @@ public interface Graph {
                 }
             }
         } catch (IOException e) {
-            throw new GraphReadException(e.getMessage());
+            throw new GraphException(e.getMessage());
         }
     }
 
@@ -124,7 +123,7 @@ public interface Graph {
         }
 
         if (result.size() != vertices.size()) {
-            throw new GraphCycleException();
+            throw new GraphException("Graph contains a cycle. Topological sorting is impossible.");
         }
         return result;
     }

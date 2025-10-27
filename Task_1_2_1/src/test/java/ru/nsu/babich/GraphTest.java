@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.babich.exceptions.GraphCycleException;
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
+import ru.nsu.babich.exceptions.GraphException;
 
 abstract class GraphTest {
     protected Graph graph;
@@ -128,7 +126,7 @@ abstract class GraphTest {
         graph.addEdge(new Edge(v2, v3));
         graph.addEdge(new Edge(v3, v1));
 
-        assertThrows(GraphCycleException.class, () -> graph.topologicalSort());
+        assertThrows(GraphException.class, () -> graph.topologicalSort());
     }
 
     @Test
@@ -137,14 +135,14 @@ abstract class GraphTest {
         Vertex v2 = new Vertex("B");
         Edge edge = new Edge(v1, v2);
 
-        assertThrows(GraphEdgeException.class, () -> graph.deleteEdge(edge));
+        assertThrows(GraphException.class, () -> graph.deleteEdge(edge));
     }
 
     @Test
     void checkGetNeighborsNonExistentVertex() {
         Vertex v1 = new Vertex("A");
 
-        assertThrows(GraphVertexException.class, () -> graph.getVertexNeighbours(v1));
+        assertThrows(GraphException.class, () -> graph.getVertexNeighbours(v1));
     }
 
     @Test

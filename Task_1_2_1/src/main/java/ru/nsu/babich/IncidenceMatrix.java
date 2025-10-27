@@ -2,8 +2,7 @@ package ru.nsu.babich;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
+import ru.nsu.babich.exceptions.GraphException;
 
 /**
  * Represents a graph via incidence matrix.
@@ -38,7 +37,7 @@ public class IncidenceMatrix implements Graph {
     public void deleteVertex(Vertex vertex) {
         int index = vertices.indexOf(vertex);
         if (index == -1) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         vertices.remove(vertex);
         for (int col = incMatrix.getWidth() - 1; col >= 0; col--) {
@@ -83,7 +82,7 @@ public class IncidenceMatrix implements Graph {
         int fromIndex = vertices.indexOf(edge.from());
         int toIndex = vertices.indexOf(edge.to());
         if (fromIndex == -1 || toIndex == -1) {
-            throw new GraphEdgeException(edge);
+            throw new GraphException(String.format("No such edge: %s", edge));
         }
         for (int col = 0; col < incMatrix.getWidth(); col++) {
             if (incMatrix.get(fromIndex, col) == -1 && incMatrix.get(toIndex, col) == 1) {
@@ -102,7 +101,7 @@ public class IncidenceMatrix implements Graph {
     public List<Vertex> getVertexNeighbours(Vertex vertex) {
         int index = vertices.indexOf(vertex);
         if (index == -1) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         ArrayList<Vertex> neighbours = new ArrayList<>();
         for (int col = 0; col < incMatrix.getWidth(); col++) {

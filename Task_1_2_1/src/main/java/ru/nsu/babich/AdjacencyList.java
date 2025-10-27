@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import ru.nsu.babich.exceptions.GraphEdgeException;
-import ru.nsu.babich.exceptions.GraphVertexException;
+import ru.nsu.babich.exceptions.GraphException;
 
 /**
  * Represents a graph via adjacency list.
@@ -37,7 +36,7 @@ public class AdjacencyList implements Graph {
     public void deleteVertex(Vertex vertex) {
         var removed = adjList.remove(vertex);
         if (removed == null) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         for (Set<Vertex> neighbors : adjList.values()) {
             neighbors.remove(vertex);
@@ -63,10 +62,10 @@ public class AdjacencyList implements Graph {
         if (neighbors != null) {
             var removed = neighbors.remove(edge.to());
             if (!removed) {
-                throw new GraphEdgeException(edge);
+                throw new GraphException(String.format("No such edge: %s", edge));
             }
         } else {
-            throw new GraphEdgeException(edge);
+            throw new GraphException(String.format("No such edge: %s", edge));
         }
     }
 
@@ -77,7 +76,7 @@ public class AdjacencyList implements Graph {
     public List<Vertex> getVertexNeighbours(Vertex vertex) {
         Set<Vertex> neighbors = adjList.get(vertex);
         if (neighbors == null) {
-            throw new GraphVertexException(vertex);
+            throw new GraphException(String.format("No such vertex: %s", vertex));
         }
         return new ArrayList<>(neighbors);
     }
