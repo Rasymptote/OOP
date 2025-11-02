@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.Arrays;
-import java.util.ConcurrentModificationException;
-import java.util.List;
-import java.util.stream.Stream;
 
 class HashTableTest {
     HashTable<String, Number> table;
@@ -119,8 +119,8 @@ class HashTableTest {
 
     @ParameterizedTest
     @MethodSource
-    void checkEquals(String message, List<HashTable.Entry<String, Number>> entries1, List<HashTable.Entry<String, Number>> entries2,
-                     boolean expectedEquals) {
+    void checkEquals(String message, List<HashTable.Entry<String, Number>> entries1,
+                     List<HashTable.Entry<String, Number>> entries2, boolean expectedEquals) {
         HashTable<String, Number> table1 = new HashTable<>();
         HashTable<String, Number> table2 = new HashTable<>();
         for (var entry : entries1) {

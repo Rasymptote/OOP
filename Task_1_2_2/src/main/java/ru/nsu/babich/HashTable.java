@@ -105,6 +105,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     /**
      * Removes the entry for the specified key from the table, if present.
+     *
      * @param key A mapped key.
      */
     public void remove(Object key) {
@@ -129,6 +130,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     /**
      * Checks whether the specified kwy exists in the hash table.
+     *
      * @param key The key to check for.
      * @return {@code true} if the key exists, {@code false} otherwise
      */
