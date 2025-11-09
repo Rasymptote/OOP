@@ -170,6 +170,15 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     }
 
     @Override
+    public int hashCode() {
+        var hash = 0;
+        for (var entry : this) {
+            hash += entry.hashCode();
+        }
+        return hash;
+    }
+
+    @Override
     public String toString() {
         if (size == 0) {
             return "{}";
