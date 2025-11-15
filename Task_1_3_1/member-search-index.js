@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.babich","c":"Searcher","l":"find(String, String)","u":"find(java.lang.String,java.lang.String)"},{"p":"ru.nsu.babich","c":"Searcher","l":"Searcher()","u":"%3Cinit%3E()"}];updateSearchResults();
