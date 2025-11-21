@@ -18,7 +18,7 @@ class SearcherTest {
     @ParameterizedTest
     @MethodSource
     void checkFind(String message, String content, String word, List<Long> result) {
-        try (var writer = new BufferedWriter(new FileWriter("test.txt"))){
+        try (var writer = new BufferedWriter(new FileWriter("test.txt"))) {
             writer.write(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -61,7 +61,7 @@ class SearcherTest {
         List<Long> result = new ArrayList<>();
         var pos = 0L;
         var random = new Random();
-        try (var writer = new BufferedWriter(new FileWriter("test.txt"))){
+        try (var writer = new BufferedWriter(new FileWriter("test.txt"))) {
             while (occurrenceNumber > 0) {
                 if (random.nextDouble() >= 0.85) {
                     result.add(pos);
