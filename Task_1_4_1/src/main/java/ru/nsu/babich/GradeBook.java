@@ -11,10 +11,18 @@ import ru.nsu.babich.semester.subject.Subject;
 import ru.nsu.babich.student.FundingType;
 import ru.nsu.babich.student.Student;
 
+/**
+ * Represents an electronic grade book.
+ */
 public class GradeBook {
     private final Student student;
     private final List<Semester> semesters;
 
+    /**
+     * Constructs a new grade book for the specified student.
+     *
+     * @param student The student who owns this grade book.
+     */
     public GradeBook(Student student) {
         this.student = student;
         this.semesters = new ArrayList<>();
@@ -24,11 +32,25 @@ public class GradeBook {
         }
     }
 
+    /**
+     * Adds a subject with grade to the specified semester.
+     *
+     * @param semesterNumber The semester number (1-8).
+     * @param subject The subject with grade to add.
+     */
     public void setSubjectGrade(int semesterNumber, Subject subject) {
+        if (semesterNumber > 8 || semesterNumber < 1) {
+            throw new IllegalArgumentException();
+        }
         var semester = semesters.get(semesterNumber - 1);
         semester.addSubject(subject);
     }
 
+    /**
+     * Calculates average grade.
+     *
+     * @return Average grade value.
+     */
     public double getAverage() {
         return semesters.stream()
                 .flatMap(semester -> semester.getSubjects().stream())
@@ -38,6 +60,11 @@ public class GradeBook {
                 .orElse(0.0);
     }
 
+    /**
+     * Checks if the student is eligible to transfer from self-funded to state-funded education.
+     *
+     * @return {@code true} if eligible to transfer, {@code false} otherwise.
+     */
     public boolean canTransferToStateFunded() {
         if (student.getFundingType() == FundingType.STATE_FUNDED) {
             return false;
@@ -54,6 +81,11 @@ public class GradeBook {
                 .allMatch(subject -> subject.getGrade().getValue() > Grade.SATISFACTORY.getValue());
     }
 
+    /**
+     * Checks if the student can get red diploma.
+     *
+     * @return {@code true} if can, {@code false} otherwise.
+     */
     public boolean canGetRedDiploma() {
         var gradedSubjects = getLatestSubjects().stream()
                 .filter(subject -> subject.getAssessmentType() != AssessmentType.PASS)
@@ -66,10 +98,15 @@ public class GradeBook {
                 && gradedSubjects.stream()
                 .filter(subject -> subject.getAssessmentType() == AssessmentType.FINAL_THESIS_DEFENSE)
                 .findFirst()
-                .orElse(Subject.createSubject("Защита ВКР", Grade.EXCELLENT, AssessmentType.FINAL_THESIS_DEFENSE))
+                .orElse(Subject.createSubject("ВКР", Grade.EXCELLENT, AssessmentType.FINAL_THESIS_DEFENSE))
                 .getGrade() == Grade.EXCELLENT;
     }
 
+    /**
+     * Checks if the student is eligible for increased scholarship in the current semester.
+     *
+     * @return {@code true} if eligible, {@code false} otherwise.
+     */
     public boolean canGetIncreasedScholarship() {
         int currentSemester = getCurrentSemester();
         if (currentSemester == 1) {

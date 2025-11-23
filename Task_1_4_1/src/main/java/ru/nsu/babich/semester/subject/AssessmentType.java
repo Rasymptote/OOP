@@ -1,5 +1,8 @@
 package ru.nsu.babich.semester.subject;
 
+/**
+ * Represents types of assessment in the educational process.
+ */
 public enum AssessmentType {
     EXAM("Экзамен"),
     GRADED_PASS("Дифференцированный зачет"),

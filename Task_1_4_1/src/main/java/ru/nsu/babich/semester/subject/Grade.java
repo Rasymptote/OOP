@@ -1,5 +1,8 @@
 package ru.nsu.babich.semester.subject;
 
+/**
+ * Represents possible grades including not numeric grades (pass/fail).
+ */
 public enum Grade {
     EXCELLENT("Отлично", 5),
     GOOD("Хорошо", 4),

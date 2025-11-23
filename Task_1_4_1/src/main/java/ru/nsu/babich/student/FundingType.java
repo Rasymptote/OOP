@@ -1,5 +1,8 @@
 package ru.nsu.babich.student;
 
+/**
+ * Represents the type of education funding.
+ */
 public enum FundingType {
     STATE_FUNDED("Бюджет"),
     SELF_FUNDED("Платная");

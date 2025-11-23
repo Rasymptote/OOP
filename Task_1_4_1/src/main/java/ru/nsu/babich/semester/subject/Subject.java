@@ -1,5 +1,8 @@
 package ru.nsu.babich.semester.subject;
 
+/**
+ * Represents an academic subject with its grade and assessment type.
+ */
 public class Subject {
     private final String name;
     private final Grade grade;
@@ -11,6 +14,14 @@ public class Subject {
         this.assessmentType = assessmentType;
     }
 
+    /**
+     * Factory method for creating Subject instances with validation.
+     *
+     * @param name The name of the subject.
+     * @param grade The grade received.
+     * @param assessmentType The type of assessment.
+     * @return New Subject instance.
+     */
     public static Subject createSubject(String name, Grade grade, AssessmentType assessmentType) {
 
         switch (assessmentType) {
