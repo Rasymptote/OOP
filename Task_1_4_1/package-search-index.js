@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.babich"},{"l":"ru.nsu.babich.semester"},{"l":"ru.nsu.babich.semester.subject"},{"l":"ru.nsu.babich.student"}];updateSearchResults();
