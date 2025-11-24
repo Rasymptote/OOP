@@ -56,7 +56,8 @@ class GradeBookTest {
 
     @ParameterizedTest
     @MethodSource
-    void checkCanTransferToStateFunded(String message, List<Subject> subjects1, List<Subject> subjects2, boolean canTransfer) {
+    void checkCanTransferToStateFunded(String message, List<Subject> subjects1,
+                                       List<Subject> subjects2, boolean canTransfer) {
         for (var subject : subjects1) {
             book.setSubjectGrade(1, subject);
         }
@@ -103,8 +104,8 @@ class GradeBookTest {
 
     @ParameterizedTest
     @MethodSource
-    void checkCanGetRedDiploma(String message, int excellentCount, int goodCount, int satisfactoryCount,
-                               Grade thesisGrade, boolean expected) {
+    void checkCanGetRedDiploma(String message, int excellentCount, int goodCount,
+                               int satisfactoryCount, Grade thesisGrade, boolean expected) {
         int counter = 0;
         for (int i = 0; i < excellentCount; i++) {
             book.setSubjectGrade(1, Subject.createSubject("Subject" + (counter++),

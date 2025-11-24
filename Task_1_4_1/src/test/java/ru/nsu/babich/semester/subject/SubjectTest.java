@@ -15,20 +15,26 @@ class SubjectTest {
     @MethodSource
     void checkCreateValidSubject(String name, Grade grade, AssessmentType assessmentType) {
        var subject = assertDoesNotThrow(() -> Subject.createSubject(name, grade, assessmentType));
-        assertEquals(name, subject.getName());
-        assertEquals(grade, subject.getGrade());
-        assertEquals(assessmentType, subject.getAssessmentType());
+       assertEquals(name, subject.getName());
+       assertEquals(grade, subject.getGrade());
+       assertEquals(assessmentType, subject.getAssessmentType());
     }
 
     static Stream<Arguments> checkCreateValidSubject() {
         return Stream.of(
-                Arguments.of("Math analysis", Grade.EXCELLENT, AssessmentType.EXAM),
-                Arguments.of("Discrete math", Grade.GOOD, AssessmentType.EXAM),
-                Arguments.of("Imperative programming", Grade.SATISFACTORY, AssessmentType.GRADED_PASS),
-                Arguments.of("Declarative programming", Grade.UNSATISFACTORY, AssessmentType.GRADED_PASS),
+                Arguments.of("Math analysis",
+                        Grade.EXCELLENT, AssessmentType.EXAM),
+                Arguments.of("Discrete math",
+                        Grade.GOOD, AssessmentType.EXAM),
+                Arguments.of("Imperative programming",
+                        Grade.SATISFACTORY, AssessmentType.GRADED_PASS),
+                Arguments.of("Declarative programming",
+                        Grade.UNSATISFACTORY, AssessmentType.GRADED_PASS),
                 Arguments.of("PE", Grade.PASS, AssessmentType.PASS),
-                Arguments.of("Digital platforms", Grade.FAIL, AssessmentType.PASS),
-                Arguments.of("Final thesis defense", Grade.EXCELLENT, AssessmentType.FINAL_THESIS_DEFENSE)
+                Arguments.of("Digital platforms",
+                        Grade.FAIL, AssessmentType.PASS),
+                Arguments.of("Final thesis defense",
+                        Grade.EXCELLENT, AssessmentType.FINAL_THESIS_DEFENSE)
         );
     }
 

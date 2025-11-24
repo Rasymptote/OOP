@@ -29,15 +29,15 @@ public class Subject {
                 if (grade == Grade.PASS || grade == Grade.FAIL) {
                     return new Subject(name, grade, assessmentType);
                 } else {
-                    throw new IllegalArgumentException("Тип контроля \"" + assessmentType +
-                            "\" поддерживает только оценку Зачет/Незачет");
+                    throw new IllegalArgumentException("Тип контроля \"" + assessmentType
+                            + "\" поддерживает только оценку Зачет/Незачет");
                 }
             default:
                 if (grade != Grade.PASS && grade != Grade.FAIL) {
                     return new Subject(name, grade, assessmentType);
                 } else {
-                    throw new IllegalArgumentException("Тип контроля \"" + assessmentType +
-                            "\" не поддерживает оценку Зачет/Незачет");
+                    throw new IllegalArgumentException("Тип контроля \"" + assessmentType
+                            + "\" не поддерживает оценку Зачет/Незачет");
                 }
         }
     }

@@ -32,9 +32,9 @@ class SemesterTest {
         var semester = new Semester(number);
         assertTrue(semester.toString().contains(String.format("%d семестр", number)));
         for (var subject : subjects) {
-           semester.addSubject(subject);
-           assertTrue(semester.toString().contains(String.format("%s/%s/%s", subject.getName(),
-                   subject.getAssessmentType(), subject.getGrade())));
+            semester.addSubject(subject);
+            assertTrue(semester.toString().contains(String.format("%s/%s/%s", subject.getName(),
+                    subject.getAssessmentType(), subject.getGrade())));
         }
     }
 
