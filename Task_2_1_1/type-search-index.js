@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.babich","l":"ParallelStreamPrimeChecker"},{"p":"ru.nsu.babich","l":"PrimeChecker"},{"p":"ru.nsu.babich","l":"SequentialPrimeChecker"},{"p":"ru.nsu.babich","l":"ThreadPrimeChecker"}];updateSearchResults();
