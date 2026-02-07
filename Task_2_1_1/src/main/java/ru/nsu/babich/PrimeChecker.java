@@ -7,6 +7,7 @@ public interface PrimeChecker {
 
     /**
      * Checks whether the array contains at least one composite number.
+     *
      * @param numbers The array of integers to check.
      * @return {@code true} if there is at least one composite number, {@code false} otherwise.
      */
@@ -15,6 +16,7 @@ public interface PrimeChecker {
 
     /**
      * Determines if a number is composite.
+     *
      * @param number The number to check.
      * @return {@code true} if the number is composite, {@code false} otherwise.
      */

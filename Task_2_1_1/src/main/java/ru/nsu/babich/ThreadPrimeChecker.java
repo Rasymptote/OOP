@@ -12,6 +12,7 @@ public class ThreadPrimeChecker implements PrimeChecker {
 
     /**
      * Constructs a ThreadPrimeChecker with the specified number of threads.
+     *
      * @param threadCount The number of threads to use for checking composite numbers.
      */
     public ThreadPrimeChecker(int threadCount) {

@@ -26,15 +26,15 @@ public class PerformancePrimeCheckerTest {
 
 
     private static final PrimeChecker[] CHECKERS = {
-            new SequentialPrimeChecker(),
-            new ThreadPrimeChecker(2),
-            new ThreadPrimeChecker(3),
-            new ThreadPrimeChecker(4),
-            new ThreadPrimeChecker(5),
-            new ThreadPrimeChecker(6),
-            new ThreadPrimeChecker(7),
-            new ThreadPrimeChecker(8),
-            new ParallelStreamPrimeChecker()
+        new SequentialPrimeChecker(),
+        new ThreadPrimeChecker(2),
+        new ThreadPrimeChecker(3),
+        new ThreadPrimeChecker(4),
+        new ThreadPrimeChecker(5),
+        new ThreadPrimeChecker(6),
+        new ThreadPrimeChecker(7),
+        new ThreadPrimeChecker(8),
+        new ParallelStreamPrimeChecker()
     };
 
 
