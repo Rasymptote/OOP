@@ -16,4 +16,13 @@ public class ParallelStreamPrimeChecker implements PrimeChecker {
                 .parallel()
                 .anyMatch(this::isComposite);
     }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "ParallelStreamPrimeChecker";
+    }
 }

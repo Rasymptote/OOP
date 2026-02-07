@@ -60,4 +60,13 @@ public class ThreadPrimeChecker implements PrimeChecker {
 
         return foundComposite.get();
     }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "ThreadPrimeChecker with " + threadCount + " threads";
+    }
 }
