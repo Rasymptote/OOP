@@ -1,6 +1,7 @@
 package ru.nsu.babich.worker;
 
 import ru.nsu.babich.buffer.BoundedBlockingQueue;
+import ru.nsu.babich.logging.OrderLogger;
 import ru.nsu.babich.model.Order;
 
 /**
@@ -12,6 +13,7 @@ public class Baker extends PizzeriaWorker {
     private final int cookingSpeed;
     private final BoundedBlockingQueue<Order> orderQueue;
     private final BoundedBlockingQueue<Order> storage;
+    private final OrderLogger orderLogger;
 
     /**
      * Constructs a Baker with the specified cooking speed, order queue, and storage.
@@ -20,10 +22,12 @@ public class Baker extends PizzeriaWorker {
      * @param orderQueue   The queue from which the baker takes orders to cook.
      * @param storage      The queue where the baker places cooked orders for delivery.
      */
-    public Baker(int cookingSpeed, BoundedBlockingQueue<Order> orderQueue, BoundedBlockingQueue<Order> storage) {
+    public Baker(int cookingSpeed, BoundedBlockingQueue<Order> orderQueue,
+                 BoundedBlockingQueue<Order> storage, OrderLogger logger) {
         this.cookingSpeed = cookingSpeed;
         this.orderQueue = orderQueue;
         this.storage = storage;
+        this.orderLogger = logger;
     }
 
 
@@ -35,7 +39,9 @@ public class Baker extends PizzeriaWorker {
                 if (order == null) {
                     break;
                 }
+                orderLogger.log(order.id(), "COOKING");
                 Thread.sleep(cookingSpeed);
+                orderLogger.log(order.id(), "COOKED");
                 storage.put(order);
             }
         } catch (InterruptedException e) {
