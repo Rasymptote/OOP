@@ -53,6 +53,7 @@ public class Courier extends PizzeriaWorker {
                     Thread.sleep(deliverySpeed);
                     orderLogger.log(order.id(), "DELIVERED");
                 }
+                ordersToDeliver.clear();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
