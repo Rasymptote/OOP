@@ -1,6 +1,6 @@
 package ru.nsu.babich.worker;
 
-import ru.nsu.babich.buffer.BoundedBlockingQueue;
+import ru.nsu.babich.queue.BoundedBlockingQueue;
 import ru.nsu.babich.logging.OrderLogger;
 import ru.nsu.babich.model.Order;
 

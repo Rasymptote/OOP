@@ -1,4 +1,4 @@
-package ru.nsu.babich.buffer;
+package ru.nsu.babich.queue;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -8,7 +8,7 @@ import java.util.Queue;
  *
  * @param <T> The type of items stored in the buffer.
  */
-public class BoundedBlockingQueue<T> implements Buffer<T> {
+public class BoundedBlockingQueue<T> implements BlockingQueue<T> {
     private final Queue<T> queue;
     private final int capacity;
 

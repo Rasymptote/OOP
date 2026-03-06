@@ -1,11 +1,11 @@
-package ru.nsu.babich.buffer;
+package ru.nsu.babich.queue;
 
 /**
  * A thread-safe buffer interface for storing and retrieving items.
  *
  * @param <T> the type of items stored in the buffer
  */
-public interface Buffer<T> {
+public interface BlockingQueue<T> {
 
     /**
      * Adds an item to the buffer, blocking if the buffer is full.
