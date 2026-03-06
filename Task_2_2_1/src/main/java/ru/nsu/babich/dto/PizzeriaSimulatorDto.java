@@ -5,7 +5,7 @@ import java.util.List;
 
 public record PizzeriaSimulatorDto(
 
-        @JsonProperty("workTimeSeconds")
+        @JsonProperty("workTimeMs")
         int workTime,
 
         @JsonProperty("storageCapacity")
