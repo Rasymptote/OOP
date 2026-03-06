@@ -2,7 +2,7 @@ package ru.nsu.babich.worker;
 
 import ru.nsu.babich.queue.BoundedBlockingQueue;
 import ru.nsu.babich.logging.OrderLogger;
-import ru.nsu.babich.model.Order;
+import ru.nsu.babich.order.Order;
 
 /**
  * Represents a baker in the pizzeria who takes orders from the order queue,

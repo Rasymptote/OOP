@@ -1,4 +1,4 @@
-package ru.nsu.babich.model;
+package ru.nsu.babich.order;
 
 /**
  * Represents a pizza order with a unique identifier.

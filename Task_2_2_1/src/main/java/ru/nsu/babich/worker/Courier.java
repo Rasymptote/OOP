@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ru.nsu.babich.queue.BoundedBlockingQueue;
 import ru.nsu.babich.logging.OrderLogger;
-import ru.nsu.babich.model.Order;
+import ru.nsu.babich.order.Order;
 
 /**
  * Represents a courier in the pizzeria who takes cooked orders from the storage and delivers them.
