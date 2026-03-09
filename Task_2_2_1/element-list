@@ -1,0 +1,7 @@
+ru.nsu.babich
+ru.nsu.babich.config
+ru.nsu.babich.dto
+ru.nsu.babich.logging
+ru.nsu.babich.order
+ru.nsu.babich.queue
+ru.nsu.babich.worker

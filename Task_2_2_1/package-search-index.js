@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.babich"},{"l":"ru.nsu.babich.config"},{"l":"ru.nsu.babich.dto"},{"l":"ru.nsu.babich.logging"},{"l":"ru.nsu.babich.order"},{"l":"ru.nsu.babich.queue"},{"l":"ru.nsu.babich.worker"}];updateSearchResults();
