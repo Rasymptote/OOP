@@ -38,6 +38,7 @@ public class BoundedBlockingQueue<T> implements BlockingQueue<T> {
      */
     public synchronized void stop() {
         activeProducers--;
+        notifyAll();
     }
 
 

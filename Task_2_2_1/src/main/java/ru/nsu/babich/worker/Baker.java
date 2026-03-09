@@ -50,7 +50,6 @@ public class Baker extends PizzeriaWorker {
             Thread.currentThread().interrupt();
         }
         finally {
-            System.out.println("Baker thread exiting");
             storage.stop();
         }
     }
