@@ -9,6 +9,7 @@ public class OrderGenerator implements Runnable {
 
     private final BoundedBlockingQueue<Order> orderQueue;
     private int id;
+    private boolean running;
 
     /**
      * Constructs an OrderGenerator with the specified order queue.
@@ -18,18 +19,31 @@ public class OrderGenerator implements Runnable {
     public OrderGenerator(BoundedBlockingQueue<Order> orderQueue) {
         this.orderQueue = orderQueue;
         this.id = 0;
+        this.running = true;
     }
+
+
+    /**
+     * Stops the order generation process.
+     */
+    public void stop() {
+        this.running = false;
+    }
+
 
     @Override
     public void run() {
+        orderQueue.start();
         try {
-            while (true) {
+            while (running) {
                 Order order = new Order(id++);
                 orderQueue.put(order);
                 Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        } finally {
+            orderQueue.stop();
         }
     }
 }

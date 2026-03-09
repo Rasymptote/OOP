@@ -21,7 +21,9 @@ public class Courier extends PizzeriaWorker {
      * Constructs a Courier with the specified trunk capacity and storage.
      *
      * @param trunkCapacity The maximum number of orders the courier can carry at once.
+     * @param deliverySpeed The time in milliseconds it takes to deliver an order.
      * @param storage       The queue from which the courier takes cooked orders for delivery.
+     * @param logger        The OrderLogger used to log the status of orders during delivery.
      */
     public Courier(int trunkCapacity, int deliverySpeed,
                    BoundedBlockingQueue<Order> storage, OrderLogger logger) {

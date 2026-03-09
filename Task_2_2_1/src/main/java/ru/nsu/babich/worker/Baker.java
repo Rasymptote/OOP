@@ -21,6 +21,7 @@ public class Baker extends PizzeriaWorker {
      * @param cookingSpeed The time in milliseconds it takes to cook an order.
      * @param orderQueue   The queue from which the baker takes orders to cook.
      * @param storage      The queue where the baker places cooked orders for delivery.
+     * @param logger       The OrderLogger used to log the status of orders during cooking.
      */
     public Baker(int cookingSpeed, BoundedBlockingQueue<Order> orderQueue,
                  BoundedBlockingQueue<Order> storage, OrderLogger logger) {
@@ -33,6 +34,7 @@ public class Baker extends PizzeriaWorker {
 
     @Override
     public void run() {
+        storage.start();
         try {
             while (true) {
                 Order order = orderQueue.take();
@@ -46,6 +48,10 @@ public class Baker extends PizzeriaWorker {
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        }
+        finally {
+            System.out.println("Baker thread exiting");
+            storage.stop();
         }
     }
 }
