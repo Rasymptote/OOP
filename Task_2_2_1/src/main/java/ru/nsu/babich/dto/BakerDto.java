@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public record BakerDto(
 
-        @JsonProperty("id")
+        @JsonProperty(value = "id", required = true)
         int id,
 
-        @JsonProperty("cookingSpeedMs")
+        @JsonProperty(value = "cookingSpeedMs", required = true)
         int cookingSpeed
 ) {
 }

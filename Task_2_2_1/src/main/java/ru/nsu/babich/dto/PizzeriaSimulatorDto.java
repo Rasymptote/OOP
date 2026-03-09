@@ -8,16 +8,16 @@ import java.util.List;
  */
 public record PizzeriaSimulatorDto(
 
-        @JsonProperty("workTimeMs")
+        @JsonProperty(value = "workTimeMs", required = true)
         int workTime,
 
-        @JsonProperty("storageCapacity")
+        @JsonProperty(value = "storageCapacity", required = true)
         int storageCapacity,
 
-        @JsonProperty("bakers")
+        @JsonProperty(value = "bakers", required = true)
         List<BakerDto> bakers,
 
-        @JsonProperty("couriers")
+        @JsonProperty(value = "couriers", required = true)
         List<CourierDto> couriers
 ) {
 }

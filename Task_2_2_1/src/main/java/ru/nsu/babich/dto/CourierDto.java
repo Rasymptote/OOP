@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public record CourierDto(
 
-        @JsonProperty("id")
+        @JsonProperty(value = "id", required = true)
         int id,
 
-        @JsonProperty("trunkCapacity")
+        @JsonProperty(value = "trunkCapacity", required = true)
         int trunkCapacity,
 
-        @JsonProperty("deliverySpeedMs")
+        @JsonProperty(value = "deliverySpeedMs", required = true)
         int deliverySpeed
 ) {
 }
