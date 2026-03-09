@@ -1,14 +1,14 @@
 package ru.nsu.babich.config;
 
-import java.io.IOException;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import ru.nsu.babich.dto.PizzeriaSimulatorDto;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import ru.nsu.babich.dto.PizzeriaSimulatorDto;
 
 class ConfigLoaderTest {
 
@@ -18,7 +18,7 @@ class ConfigLoaderTest {
     @Test
     void checkLoadValidConfig() throws IOException {
         Path configFile = tempDir.resolve("valid.json");
-        String VALID_CONFIG = """
+        String validConfig = """
                 {
                      "workTimeMs": 50000,
                      "bakers": [{"id": 1, "cookingSpeedMs": 2}],
@@ -26,7 +26,7 @@ class ConfigLoaderTest {
                      "storageCapacity": 15
                 }
                 """;
-        Files.writeString(configFile, VALID_CONFIG);
+        Files.writeString(configFile, validConfig);
 
         ConfigLoader loader = new ConfigLoader(configFile.toString());
         PizzeriaSimulatorDto dto = loader.load();
@@ -46,12 +46,12 @@ class ConfigLoaderTest {
     @Test
     void checkLoadInvalidConfig() throws IOException {
         Path configFile = tempDir.resolve("indalid.json");
-        String INVALID_CONFIG = """
+        String invalidConfig = """
                            {
                                 "workTimeMs": 0,
                            }
                 """;
-        Files.writeString(configFile, INVALID_CONFIG);
+        Files.writeString(configFile, invalidConfig);
 
         ConfigLoader loader = new ConfigLoader(configFile.toString());
         assertThrows(IOException.class, loader::load);

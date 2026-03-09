@@ -17,16 +17,22 @@ import ru.nsu.babich.worker.Courier;
 public class PizzeriaSimulatorFactory {
 
     /**
-     * Creates a PizzeriaSimulator instance based on the provided PizzeriaSimulatorDto configuration.
+     * Creates a PizzeriaSimulator instance based on the provided
+     * PizzeriaSimulatorDto configuration.
      *
-     * @param pizzeriaSimulatorDto The configuration for the pizzeria simulator, including work time, storage capacity,
-     *                             bakers, and couriers.
-     * @return A configured instance of PizzeriaSimulator ready to run the simulation.
+     * @param pizzeriaSimulatorDto The configuration for the pizzeria
+     *                             simulator, including work time,
+     *                             storage capacity, bakers, and couriers.
+     * @return A configured instance of PizzeriaSimulator ready
+     * to run the simulation.
      */
-    public static PizzeriaSimulator createPizzeriaSimulator(PizzeriaSimulatorDto pizzeriaSimulatorDto) {
+    public static PizzeriaSimulator createPizzeriaSimulator(
+            PizzeriaSimulatorDto pizzeriaSimulatorDto) {
 
-        BoundedBlockingQueue<Order> orderQueue = new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
-        BoundedBlockingQueue<Order> storage = new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
+        BoundedBlockingQueue<Order> orderQueue =
+                new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
+        BoundedBlockingQueue<Order> storage =
+                new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
         OrderLogger logger = new ConsoleLogger();
         OrderGenerator orderGenerator = new OrderGenerator(orderQueue);
 

@@ -14,7 +14,8 @@ public abstract class BlockingQueueTest {
 
     @ParameterizedTest
     @MethodSource
-    void checkPutAndTake(List<Object> itemsToPut, int itemsToTake, List<Object> expectedTakenItems) {
+    void checkPutAndTake(List<Object> itemsToPut, int itemsToTake,
+                         List<Object> expectedTakenItems) {
         for (Object item : itemsToPut) {
             try {
                 queue.put(item);

@@ -2,9 +2,9 @@ package ru.nsu.babich.worker;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.babich.queue.BoundedBlockingQueue;
 import ru.nsu.babich.logging.OrderLogger;
 import ru.nsu.babich.order.Order;
+import ru.nsu.babich.queue.BoundedBlockingQueue;
 
 /**
  * Represents a courier in the pizzeria who takes cooked orders from the storage and delivers them.

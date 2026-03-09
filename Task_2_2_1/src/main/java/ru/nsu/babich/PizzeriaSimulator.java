@@ -13,11 +13,15 @@ public class PizzeriaSimulator implements Runnable {
     private final int workTime;
 
     /**
-     * Constructs a PizzeriaSimulator with the specified bakers, couriers, work time, and order generator.
+     * Constructs a PizzeriaSimulator with the specified bakers,
+     * couriers, work time, and order generator.
      *
-     * @param workers        A list of order generator, bakers, couriers that will be executed in the simulation.
-     * @param orderGenerator The OrderGenerator responsible for generating orders during the simulation.
-     * @param workTime The total time (in milliseconds) for which the simulation will run.
+     * @param workers        A list of order generator, bakers,
+     *                       couriers that will be executed in the simulation.
+     * @param orderGenerator The OrderGenerator responsible for
+     *                       generating orders during the simulation.
+     * @param workTime       The total time (in milliseconds)
+     *                       for which the simulation will run.
      */
     public PizzeriaSimulator(List<Runnable> workers, OrderGenerator orderGenerator, int workTime) {
         this.workers = workers;

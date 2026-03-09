@@ -34,7 +34,8 @@ public class BoundedBlockingQueue<T> implements BlockingQueue<T> {
 
     /**
      * Indicates that a producer has finished producing items.
-     * This method should be called by producers after they have finished putting items into the queue.
+     * This method should be called by producers after they have finished putting items
+     * into the queue.
      */
     public synchronized void stop() {
         activeProducers--;
