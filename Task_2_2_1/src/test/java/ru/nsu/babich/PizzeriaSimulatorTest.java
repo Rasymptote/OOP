@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import ru.nsu.babich.logging.ConsoleLogger;
 import ru.nsu.babich.order.Order;
 import ru.nsu.babich.order.OrderGenerator;
 import ru.nsu.babich.queue.BoundedBlockingQueue;

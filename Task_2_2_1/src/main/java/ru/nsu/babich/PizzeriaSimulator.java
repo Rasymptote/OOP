@@ -3,8 +3,6 @@ package ru.nsu.babich;
 import java.util.List;
 import java.util.stream.Stream;
 import ru.nsu.babich.dto.PizzeriaSimulatorDto;
-import ru.nsu.babich.logging.ConsoleLogger;
-import ru.nsu.babich.logging.OrderLogger;
 import ru.nsu.babich.order.Order;
 import ru.nsu.babich.order.OrderGenerator;
 import ru.nsu.babich.queue.BoundedBlockingQueue;
@@ -15,6 +13,7 @@ import ru.nsu.babich.worker.Courier;
  * Implements simulation logic for the pizzeria.
  */
 public class PizzeriaSimulator implements Runnable {
+    public static final String LOG_TEMPLATE = "[{}]:{}";
 
     private final List<Runnable> workers;
     private final OrderGenerator orderGenerator;
@@ -47,24 +46,22 @@ public class PizzeriaSimulator implements Runnable {
      * @return A configured instance of PizzeriaSimulator ready
      * to run the simulation.
      */
-    public static PizzeriaSimulator createPizzeriaSimulator(
-            PizzeriaSimulatorDto pizzeriaSimulatorDto) {
+    public static PizzeriaSimulator create(PizzeriaSimulatorDto pizzeriaSimulatorDto) {
 
         BoundedBlockingQueue<Order> orderQueue =
                 new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
         BoundedBlockingQueue<Order> storage =
                 new BoundedBlockingQueue<>(pizzeriaSimulatorDto.storageCapacity());
-        OrderLogger logger = new ConsoleLogger();
         OrderGenerator orderGenerator = new OrderGenerator(orderQueue);
 
         List<Baker> bakers = pizzeriaSimulatorDto.bakers()
                 .stream()
-                .map(b -> new Baker(b.cookingSpeed(), orderQueue, storage, logger))
+                .map(b -> new Baker(b.cookingSpeed(), orderQueue, storage))
                 .toList();
 
         List<Courier> couriers = pizzeriaSimulatorDto.couriers()
                 .stream()
-                .map(c -> new Courier(c.trunkCapacity(), c.deliverySpeed(), storage, logger))
+                .map(c -> new Courier(c.trunkCapacity(), c.deliverySpeed(), storage))
                 .toList();
 
         List<Runnable> workers = Stream.concat(

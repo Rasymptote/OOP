@@ -2,20 +2,24 @@ package ru.nsu.babich.worker;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.babich.logging.OrderLogger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.nsu.babich.order.Order;
 import ru.nsu.babich.queue.BoundedBlockingQueue;
+
+import static ru.nsu.babich.PizzeriaSimulator.LOG_TEMPLATE;
 
 /**
  * Represents a courier in the pizzeria who takes cooked orders from the storage and delivers them.
  */
 public class Courier implements PizzeriaWorker {
+    private static final Logger logger = LoggerFactory.getLogger(Courier.class);
 
     private final int deliverySpeed;
     private final int trunkCapacity;
     private final BoundedBlockingQueue<Order> storage;
     private final List<Order> ordersToDeliver;
-    private final OrderLogger orderLogger;
 
     /**
      * Constructs a Courier with the specified trunk capacity and storage.
@@ -23,14 +27,12 @@ public class Courier implements PizzeriaWorker {
      * @param trunkCapacity The maximum number of orders the courier can carry at once.
      * @param deliverySpeed The time in milliseconds it takes to deliver an order.
      * @param storage       The queue from which the courier takes cooked orders for delivery.
-     * @param logger        The OrderLogger used to log the status of orders during delivery.
      */
     public Courier(int trunkCapacity, int deliverySpeed,
-                   BoundedBlockingQueue<Order> storage, OrderLogger logger) {
+                   BoundedBlockingQueue<Order> storage) {
         this.trunkCapacity = trunkCapacity;
         this.deliverySpeed = deliverySpeed;
         this.storage = storage;
-        this.orderLogger = logger;
         this.ordersToDeliver = new ArrayList<>();
     }
 
@@ -51,9 +53,9 @@ public class Courier implements PizzeriaWorker {
                 }
 
                 for (Order order : ordersToDeliver) {
-                    orderLogger.log(order.id(), "DELIVERING");
+                    logger.info(LOG_TEMPLATE, order.id(), "DELIVERING");
                     Thread.sleep(deliverySpeed);
-                    orderLogger.log(order.id(), "DELIVERED");
+                    logger.info(LOG_TEMPLATE, order.id(), "DELIVERED");
                 }
                 ordersToDeliver.clear();
             }
