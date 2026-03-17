@@ -9,7 +9,7 @@ import ru.nsu.babich.queue.BoundedBlockingQueue;
 /**
  * Represents a courier in the pizzeria who takes cooked orders from the storage and delivers them.
  */
-public class Courier extends PizzeriaWorker {
+public class Courier implements PizzeriaWorker {
 
     private final int deliverySpeed;
     private final int trunkCapacity;

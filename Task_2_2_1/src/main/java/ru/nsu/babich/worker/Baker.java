@@ -8,7 +8,7 @@ import ru.nsu.babich.queue.BoundedBlockingQueue;
  * Represents a baker in the pizzeria who takes orders from the order queue,
  * cooks them, and places them in the storage for delivery.
  */
-public class Baker extends PizzeriaWorker {
+public class Baker implements PizzeriaWorker {
 
     private final int cookingSpeed;
     private final BoundedBlockingQueue<Order> orderQueue;
