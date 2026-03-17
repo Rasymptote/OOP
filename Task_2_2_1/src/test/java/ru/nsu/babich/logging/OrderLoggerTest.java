@@ -16,10 +16,10 @@ public abstract class OrderLoggerTest {
 
     static Stream<Arguments> checkLog() {
         return Stream.of(
-                Arguments.of(1, "COOKING", "[1]: COOKING\n"),
-                Arguments.of(2, "COOKED", "[2]: COOKED\n"),
-                Arguments.of(3, "DELIVERING", "[3]: DELIVERING\n"),
-                Arguments.of(4, "DELIVERED", "[4]: DELIVERED\n")
+                Arguments.of(1, "COOKING", "[1]: COOKING"),
+                Arguments.of(2, "COOKED", "[2]: COOKED"),
+                Arguments.of(3, "DELIVERING", "[3]: DELIVERING"),
+                Arguments.of(4, "DELIVERED", "[4]: DELIVERED")
         );
     }
 }
