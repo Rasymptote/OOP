@@ -15,7 +15,7 @@ class PizzeriaSimulatorFactoryTest {
     @ParameterizedTest
     @MethodSource
     void checkCreatePizzeriaSimulator(PizzeriaSimulatorDto dto) {
-        PizzeriaSimulator simulator = PizzeriaSimulatorFactory.createPizzeriaSimulator(dto);
+        PizzeriaSimulator simulator = PizzeriaSimulator.createPizzeriaSimulator(dto);
         assertNotNull(simulator);
     }
 
