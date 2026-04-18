@@ -25,7 +25,8 @@ public class GameTickService {
      * @param eatingService    Service that applies eating effects.
      * @param collisionService Service that detects collisions.
      */
-    public GameTickService(MovementService movementService, EatingService eatingService, CheckCollisionService collisionService) {
+    public GameTickService(MovementService movementService, EatingService eatingService,
+                           CheckCollisionService collisionService) {
         this.movementService = Objects.requireNonNull(movementService, "movingService must not be null");
         this.eatingService = Objects.requireNonNull(eatingService, "eatingService must not be null");
         this.collisionService = Objects.requireNonNull(collisionService, "collisionService must not be null");
@@ -35,12 +36,11 @@ public class GameTickService {
      * Performs one simulation tick for the current game state.
      *
      * @param state Current game state.
-     * @param field Active game field.
      * @return Next game state after movement, collision checks, and eating.
      */
-    public GameState tick(GameState state, Field field) {
+    public GameState tick(GameState state) {
         Objects.requireNonNull(state, "state must not be null");
-        Objects.requireNonNull(field, "field must not be null");
+        Field field = state.field();
 
         if (!state.isRunning()) {
             return state;
@@ -49,15 +49,14 @@ public class GameTickService {
         Snake movedSnake = movementService.handle(state.snake());
 
         if (collisionService.hasCollision(movedSnake, field)) {
-            return createState(movedSnake, state.foods(), GameStatus.LOST);
+            return createState(field, movedSnake, state.foods(), GameStatus.LOST);
         }
 
         Optional<Food> eatenFood = findEatenFood(state.foods(), movedSnake);
 
         return eatenFood
                 .map(food -> handleEating(state, field, movedSnake, food))
-                .orElseGet(() -> createState(movedSnake, state.foods(), GameStatus.RUNNING));
-
+                .orElseGet(() -> createState(field, movedSnake, state.foods(), GameStatus.RUNNING));
     }
 
     private GameState handleEating(GameState state, Field field, Snake snake, Food eatenFood) {
@@ -65,7 +64,7 @@ public class GameTickService {
 
         GameStatus status = result.isWin() ? GameStatus.WON : GameStatus.RUNNING;
 
-        return createState(result.snake(), result.foods(), status);
+        return createState(field, result.snake(), result.foods(), status);
     }
 
     private Optional<Food> findEatenFood(List<Food> foods, Snake snake) {
@@ -74,7 +73,7 @@ public class GameTickService {
                 .findFirst();
     }
 
-    private GameState createState(Snake snake, List<Food> foods, GameStatus status) {
-        return new GameState(snake, foods, status);
+    private GameState createState(Field field, Snake snake, List<Food> foods, GameStatus status) {
+        return new GameState(field, snake, foods, status);
     }
 }

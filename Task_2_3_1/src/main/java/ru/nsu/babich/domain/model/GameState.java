@@ -6,12 +6,14 @@ import java.util.Objects;
 /**
  * Immutable snapshot of the current game state.
  *
+ * @param field Active game field dimensions.
  * @param snake Current snake state.
  * @param foods List of active food items on the board.
  * @param status Current game lifecycle status.
  */
-public record GameState(Snake snake, List<Food> foods, GameStatus status) {
+public record GameState(Field field, Snake snake, List<Food> foods, GameStatus status) {
     public GameState {
+        Objects.requireNonNull(field, "field must not be null");
         Objects.requireNonNull(snake, "snake must not be null");
         Objects.requireNonNull(foods, "foods must not be null");
         Objects.requireNonNull(status, "status must not be null");
