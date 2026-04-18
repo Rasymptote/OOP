@@ -2,8 +2,8 @@ package ru.nsu.babich.domain.service.strategy.cellpicking;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
-import ru.nsu.babich.domain.exception.NoFreeCellsException;
 import ru.nsu.babich.domain.model.Point;
 
 /**
@@ -26,15 +26,14 @@ public class RandomCellPickingStrategy implements CellPickingStrategy {
      * Selects a random cell from the provided list.
      *
      * @param cells Candidate cells.
-     * @return Randomly selected cell.
-     * @throws NoFreeCellsException If the input list is empty.
+     * @return Randomly selected cell, or empty when the input list is empty.
      */
     @Override
-    public Point pick(List<Point> cells) {
+    public Optional<Point> pick(List<Point> cells) {
         Objects.requireNonNull(cells, "cells must not be null");
         if (cells.isEmpty()) {
-            throw new NoFreeCellsException("No free cells for food generation");
+            return Optional.empty();
         }
-        return cells.get(random.nextInt(cells.size()));
+        return Optional.of(cells.get(random.nextInt(cells.size())));
     }
 }

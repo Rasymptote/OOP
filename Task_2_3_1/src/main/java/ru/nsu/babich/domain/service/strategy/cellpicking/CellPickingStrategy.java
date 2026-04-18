@@ -1,6 +1,7 @@
 package ru.nsu.babich.domain.service.strategy.cellpicking;
 
 import java.util.List;
+import java.util.Optional;
 import ru.nsu.babich.domain.model.Point;
 
 /**
@@ -12,7 +13,7 @@ public interface CellPickingStrategy {
      * Selects one cell from the provided candidate list.
      *
      * @param cells Candidate cells.
-     * @return Selected cell.
+     * @return Selected cell, or empty when no candidates are available.
      */
-    Point pick(List<Point> cells);
+    Optional<Point> pick(List<Point> cells);
 }
