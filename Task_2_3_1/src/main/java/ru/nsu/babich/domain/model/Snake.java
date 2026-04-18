@@ -21,6 +21,15 @@ public class Snake {
      */
     public Snake(Deque<Point> segments, int pendingGrowthTicks) {
         Objects.requireNonNull(segments, "segments must not be null");
+        if (segments.isEmpty()) {
+            throw new IllegalArgumentException("segments must not be empty");
+        }
+        if (segments.stream().anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("segments must not contain nulls");
+        }
+        if (pendingGrowthTicks < 0) {
+            throw new IllegalArgumentException("pendingGrowthTicks must be non-negative");
+        }
         this.segments = new ArrayDeque<>(segments);
         this.pendingGrowthTicks = pendingGrowthTicks;
     }
@@ -53,6 +62,9 @@ public class Snake {
      * @return A new Snake instance with the updated growth ticks.
      */
     public Snake withAddedGrowthTicks(int ticksToAdd) {
+        if (ticksToAdd < 0) {
+            throw new IllegalArgumentException("ticksToAdd must be non-negative");
+        }
         return new Snake(segments, pendingGrowthTicks + ticksToAdd);
     }
 
