@@ -1,83 +1,65 @@
 package ru.nsu.babich.domain.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import ru.nsu.babich.domain.model.Field;
+import java.util.Optional;
+import java.util.Set;
 import ru.nsu.babich.domain.model.Food;
-import ru.nsu.babich.domain.model.Snake;
+import ru.nsu.babich.domain.model.Player;
+import ru.nsu.babich.domain.model.PlayerId;
 
 /**
  * Domain service that applies food consumption effects.
  */
 public class EatingService {
 
-    private final FoodGenerator foodGenerator;
-
     /**
-     * Constructs an eating service.
+     * Handles food consumption for all alive players on this tick.
      *
-     * @param foodGenerator Service that replenishes food after eating.
+     * @param players Current alive players.
+     * @param foods Current food list.
+     * @return Result of eating, containing updated player states and remaining foods.
      */
-    public EatingService(FoodGenerator foodGenerator) {
-        this.foodGenerator = Objects.requireNonNull(foodGenerator, "foodGenerator must not be null");
-    }
-
-    /**
-     * Handles snake interaction with an eaten food item.
-     *
-     * @param field     Active game field.
-     * @param snake     Current snake state.
-     * @param foods     Current food list.
-     * @param eatenFood Food consumed on this tick.
-     * @return Updated state after growth, food removal, and replenishment.
-     */
-    public EatingResult handle(Field field, Snake snake, List<Food> foods, Food eatenFood) {
-        Objects.requireNonNull(field, "field must not be null");
-        Objects.requireNonNull(snake, "snake must not be null");
+    public EatingResult handle(List<Player> players, List<Food> foods) {
+        Objects.requireNonNull(players, "players must not be null");
         Objects.requireNonNull(foods, "foods must not be null");
-        Objects.requireNonNull(eatenFood, "eatenFood must not be null");
 
-        Snake grownSnake = growSnake(snake, eatenFood);
+        Map<PlayerId, Integer> growthByPlayer = new HashMap<>();
+        Set<Food> eatenFoods = new HashSet<>();
 
-        List<Food> remainingFoods = removeEatenFood(foods, eatenFood);
-
-        List<Food> replenishedFoods = replenish(field, grownSnake, remainingFoods, foods.size());
-
-        boolean isWin = replenishedFoods.isEmpty();
-
-        return new EatingResult(grownSnake, replenishedFoods, isWin);
-    }
-
-    /**
-     * Result of a food consumption step.
-     *
-     * @param snake Updated snake state.
-     * @param foods Updated food list.
-     * @param isWin {@code true} when no food can remain on the field.
-     */
-    public record EatingResult(Snake snake, List<Food> foods, boolean isWin) {
-    }
-
-    private Snake growSnake(Snake snake, Food eatenFood) {
-        return snake.withAddedGrowthTicks(eatenFood.type().getGrowthTicks());
-    }
-
-    private List<Food> removeEatenFood(List<Food> foods, Food eatenFood) {
-        return foods.stream().filter(food -> !food.equals(eatenFood)).toList();
-    }
-
-    private List<Food> replenish(Field field, Snake snake, List<Food> foods, int targetFoodCount) {
-        var result = new ArrayList<>(foods);
-
-        while (result.size() < targetFoodCount) {
-            var newFood = foodGenerator.generate(field, snake, result);
-            if (newFood.isEmpty()) {
-                break;
-            }
-            result.add(newFood.get());
+        for (Food food : foods) {
+            findEater(players, food).ifPresent(eater -> {
+                eatenFoods.add(food);
+                growthByPlayer.merge(eater.id(), food.type().getGrowthTicks(), Integer::sum);
+            });
         }
 
-        return List.copyOf(result);
+        List<Player> grownPlayers = players.stream()
+                .map(player -> growPlayer(player, growthByPlayer.getOrDefault(player.id(), 0)))
+                .toList();
+
+        List<Food> remainingFoods = foods.stream().filter(food -> !eatenFoods.contains(food)).toList();
+
+        return new EatingResult(grownPlayers, remainingFoods);
+    }
+
+    public record EatingResult(List<Player> players, List<Food> foods) {
+    }
+
+    private Player growPlayer(Player player, int ticksToAdd) {
+        if (ticksToAdd <= 0) {
+            return player;
+        }
+        return new Player(player.id(), player.movementStrategy(), player.snake().withAddedGrowthTicks(ticksToAdd),
+                player.score() + ticksToAdd);
+    }
+
+    private Optional<Player> findEater(List<Player> players, Food food) {
+        return players.stream()
+                .filter(player -> CheckCollisionService.isSameCell(player.snake().getHead(), food.position()))
+                .findFirst();
     }
 }

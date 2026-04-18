@@ -2,12 +2,10 @@ package ru.nsu.babich.domain.service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import ru.nsu.babich.domain.model.Field;
 import ru.nsu.babich.domain.model.Food;
 import ru.nsu.babich.domain.model.GameState;
-import ru.nsu.babich.domain.model.GameStatus;
-import ru.nsu.babich.domain.model.Snake;
+import ru.nsu.babich.domain.model.Player;
 
 /**
  * Domain service that advances the game by one tick.
@@ -16,20 +14,22 @@ public class GameTickService {
 
     private final MovementService movementService;
     private final EatingService eatingService;
-    private final CheckCollisionService collisionService;
+    private final FoodReplenishmentService foodReplenishmentService;
 
     /**
      * Constructs a game tick service.
      *
      * @param movementService  Service that computes snake movement.
      * @param eatingService    Service that applies eating effects.
-     * @param collisionService Service that detects collisions.
+     * @param foodReplenishmentService Service that replenishes missing food.
      */
-    public GameTickService(MovementService movementService, EatingService eatingService,
-                           CheckCollisionService collisionService) {
+    public GameTickService(MovementService movementService,
+                           EatingService eatingService,
+                           FoodReplenishmentService foodReplenishmentService) {
         this.movementService = Objects.requireNonNull(movementService, "movingService must not be null");
         this.eatingService = Objects.requireNonNull(eatingService, "eatingService must not be null");
-        this.collisionService = Objects.requireNonNull(collisionService, "collisionService must not be null");
+        this.foodReplenishmentService = Objects.requireNonNull(foodReplenishmentService,
+                "foodReplenishmentService must not be null");
     }
 
     /**
@@ -40,40 +40,47 @@ public class GameTickService {
      */
     public GameState tick(GameState state) {
         Objects.requireNonNull(state, "state must not be null");
-        Field field = state.field();
+        var field = state.field();
 
-        if (!state.isRunning()) {
-            return state;
+        var movedPlayers = movePlayers(state.players());
+        var alivePlayers = filterAlivePlayers(movedPlayers, field);
+
+        if (alivePlayers.isEmpty()) {
+            return createState(field, List.of(), state.foods());
         }
 
-        Snake movedSnake = movementService.handle(state.snake());
-
-        if (collisionService.hasCollision(movedSnake, field)) {
-            return createState(field, movedSnake, state.foods(), GameStatus.LOST);
-        }
-
-        Optional<Food> eatenFood = findEatenFood(state.foods(), movedSnake);
-
-        return eatenFood
-                .map(food -> handleEating(state, field, movedSnake, food))
-                .orElseGet(() -> createState(field, movedSnake, state.foods(), GameStatus.RUNNING));
+        return applyEatingAndReplenishment(field, alivePlayers, state.foods());
     }
 
-    private GameState handleEating(GameState state, Field field, Snake snake, Food eatenFood) {
-        var result = eatingService.handle(field, snake, state.foods(), eatenFood);
-
-        GameStatus status = result.isWin() ? GameStatus.WON : GameStatus.RUNNING;
-
-        return createState(field, result.snake(), result.foods(), status);
+    private List<Player> movePlayers(List<Player> players) {
+        return players.stream()
+                .map(player -> new Player(
+                        player.id(),
+                        player.movementStrategy(),
+                        movementService.handle(player.snake(), player.movementStrategy()),
+                        player.score()
+                ))
+                .toList();
     }
 
-    private Optional<Food> findEatenFood(List<Food> foods, Snake snake) {
-        return foods.stream()
-                .filter(food -> collisionService.isSameCell(snake.getHead(), food.position()))
-                .findFirst();
+    private List<Player> filterAlivePlayers(List<Player> movedPlayers, Field field) {
+        var collidedPlayerIds = CheckCollisionService.findCollidedPlayerIds(movedPlayers, field);
+        return movedPlayers.stream()
+                .filter(player -> !collidedPlayerIds.contains(player.id()))
+                .toList();
     }
 
-    private GameState createState(Field field, Snake snake, List<Food> foods, GameStatus status) {
-        return new GameState(field, snake, foods, status);
+    private GameState applyEatingAndReplenishment(Field field, List<Player> alivePlayers, List<Food> foods) {
+        var eatingResult = eatingService.handle(alivePlayers, foods);
+        List<Food> replenishedFoods = foodReplenishmentService.replenish(
+                field,
+                eatingResult.players(),
+                eatingResult.foods()
+        );
+        return createState(field, eatingResult.players(), replenishedFoods);
+    }
+
+    private GameState createState(Field field, List<Player> players, List<Food> foods) {
+        return new GameState(field, players, foods);
     }
 }
