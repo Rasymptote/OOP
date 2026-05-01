@@ -1,4 +1,4 @@
-package ru.nsu.babich.application.dto;
+package ru.nsu.babich.client.presentation.api.dto;
 
 /**
  * Data transfer object for a 2D point.
