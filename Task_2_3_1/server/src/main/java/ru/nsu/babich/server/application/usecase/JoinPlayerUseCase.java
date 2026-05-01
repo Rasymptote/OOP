@@ -20,6 +20,14 @@ public class JoinPlayerUseCase {
     private final FreeCellsService freeCellsService;
     private final PlayerFactory playerFactory;
 
+    /**
+     * Constructs use case with required dependencies.
+     *
+     * @param gameStateRepository Repository used to load and save game state.
+     * @param sessionRepository Repository used to track player sessions.
+     * @param freeCellsService Domain service that computes free cells on the field.
+     * @param playerFactory Factory for creating new player instances with default initial state.
+     */
     public JoinPlayerUseCase(GameStateRepository gameStateRepository,
                              SessionRepository sessionRepository,
                              FreeCellsService freeCellsService,

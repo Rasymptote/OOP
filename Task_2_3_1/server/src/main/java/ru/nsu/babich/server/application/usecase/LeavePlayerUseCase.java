@@ -14,6 +14,12 @@ public class LeavePlayerUseCase {
     private final SessionRepository sessionRepository;
     private final GameStateRepository gameStateRepository;
 
+    /**
+     * Constructs use case with required dependencies.
+     *
+     * @param sessionRepository Repository used to track player sessions.
+     * @param gameStateRepository Repository used to load and save game state.
+     */
     public LeavePlayerUseCase(SessionRepository sessionRepository,
                               GameStateRepository gameStateRepository) {
         this.sessionRepository = Objects.requireNonNull(sessionRepository,

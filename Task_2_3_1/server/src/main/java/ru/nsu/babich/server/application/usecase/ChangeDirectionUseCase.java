@@ -16,6 +16,12 @@ public class ChangeDirectionUseCase {
     private final GameStateRepository gameStateRepository;
     private final SessionRepository sessionRepository;
 
+    /**
+     * Constructs use case with required dependencies.
+     *
+     * @param gameStateRepository Repository used to load and save game state.
+     * @param sessionRepository Repository used to resolve player id from session id.
+     */
     public ChangeDirectionUseCase(GameStateRepository gameStateRepository, SessionRepository sessionRepository) {
         this.gameStateRepository = Objects.requireNonNull(gameStateRepository,
                 "gameStateRepository must not be null");

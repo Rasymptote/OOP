@@ -24,6 +24,9 @@ import ru.nsu.babich.server.domain.service.strategy.foodtypepicking.RandomFoodTy
 import ru.nsu.babich.server.infrastructure.repository.InMemoryGameStateRepository;
 import ru.nsu.babich.server.infrastructure.repository.InMemorySessionRepository;
 
+/**
+ * Spring configuration class that defines application beans and their dependencies.
+ */
 @Configuration
 public class ApplicationConfiguration {
 
@@ -108,7 +111,8 @@ public class ApplicationConfiguration {
             FreeCellsService freeCellsService,
             PlayerFactory playerFactory
     ) {
-        return new JoinPlayerUseCase(gameStateRepository, sessionRepository, freeCellsService, playerFactory);
+        return new JoinPlayerUseCase(gameStateRepository, sessionRepository,
+                freeCellsService, playerFactory);
     }
 
     @Bean

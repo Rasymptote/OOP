@@ -24,8 +24,10 @@ public class GameTickUseCase {
      */
     public GameTickUseCase(GameStateRepository repository,
                            GameTickService gameTickService) {
-        this.gameStateRepository = Objects.requireNonNull(repository, "gameStateRepository must not be null");
-        this.gameTickService = Objects.requireNonNull(gameTickService, "gameTickService must not be null");
+        this.gameStateRepository = Objects.requireNonNull(repository,
+                "gameStateRepository must not be null");
+        this.gameTickService = Objects.requireNonNull(gameTickService,
+                "gameTickService must not be null");
     }
 
     /**
