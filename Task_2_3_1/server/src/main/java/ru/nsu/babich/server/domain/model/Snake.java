@@ -95,6 +95,11 @@ public class Snake {
         return List.copyOf(segments);
     }
 
+    /**
+     * Returns number of ticks left while snake continues to grow.
+     *
+     * @return Pending growth ticks.
+     */
     public int getPendingGrowthTicks() {
         return pendingGrowthTicks;
     }

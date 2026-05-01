@@ -16,6 +16,11 @@ public interface MovementStrategy {
      */
     Point computeNextHead(Point currentHead);
 
+    /**
+     * Accepts requested direction change before the next movement step.
+     *
+     * @param direction Requested direction.
+     */
     default void putDirection(Direction direction) {
     }
 }

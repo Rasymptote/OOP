@@ -5,17 +5,26 @@ import java.util.Deque;
 import ru.nsu.babich.server.domain.model.Direction;
 import ru.nsu.babich.server.domain.model.Point;
 
+/**
+ * Buffers direction inputs and applies them step by step on each tick.
+ */
 public class BufferedMovementStrategy implements MovementStrategy {
     private final Deque<Direction> buffer;
     private final int bufferSize;
     private Direction lastDirection;
 
+    /**
+     * Creates movement strategy with bounded input buffer.
+     *
+     * @param bufferSize Maximum buffered directions count.
+     */
     public BufferedMovementStrategy(int bufferSize) {
         buffer = new ArrayDeque<>();
         lastDirection = Direction.RIGHT;
         this.bufferSize = bufferSize;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Point computeNextHead(Point currentHead) {
         if (!buffer.isEmpty()) {
@@ -29,6 +38,7 @@ public class BufferedMovementStrategy implements MovementStrategy {
         };
     }
 
+    /** {@inheritDoc} */
     @Override
     public void putDirection(Direction direction) {
         if (buffer.size() < bufferSize) {
