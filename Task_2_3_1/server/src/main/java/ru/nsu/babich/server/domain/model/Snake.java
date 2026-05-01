@@ -94,13 +94,4 @@ public class Snake {
     public List<Point> getSegments() {
         return List.copyOf(segments);
     }
-
-    /**
-     * Returns number of ticks left while snake continues to grow.
-     *
-     * @return Pending growth ticks.
-     */
-    public int getPendingGrowthTicks() {
-        return pendingGrowthTicks;
-    }
 }
