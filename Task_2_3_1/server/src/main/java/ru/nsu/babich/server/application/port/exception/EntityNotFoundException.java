@@ -1,4 +1,4 @@
-package ru.nsu.babich.application.port.exception;
+package ru.nsu.babich.server.application.port.exception;
 
 /**
  * Exception indicating that requested persisted entity does not exist.

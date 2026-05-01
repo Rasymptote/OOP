@@ -1,12 +1,12 @@
-package ru.nsu.babich.application.usecase;
+package ru.nsu.babich.server.application.usecase;
 
 import java.util.Objects;
-import ru.nsu.babich.application.exception.UseCaseException;
-import ru.nsu.babich.application.exception.ValidationException;
-import ru.nsu.babich.application.port.GameStateRepository;
-import ru.nsu.babich.application.port.exception.RepositoryException;
-import ru.nsu.babich.domain.model.GameState;
-import ru.nsu.babich.domain.service.GameTickService;
+import ru.nsu.babich.server.application.exception.UseCaseException;
+import ru.nsu.babich.server.application.exception.ValidationException;
+import ru.nsu.babich.server.application.port.GameStateRepository;
+import ru.nsu.babich.server.application.port.exception.RepositoryException;
+import ru.nsu.babich.server.domain.model.GameState;
+import ru.nsu.babich.server.domain.service.GameTickService;
 
 /**
  * Application use case that advances persisted game state by one tick.

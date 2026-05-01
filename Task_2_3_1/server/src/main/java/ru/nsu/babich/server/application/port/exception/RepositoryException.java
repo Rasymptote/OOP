@@ -1,4 +1,4 @@
-package ru.nsu.babich.application.port.exception;
+package ru.nsu.babich.server.application.port.exception;
 
 /**
  * Base unchecked exception for repository access failures.

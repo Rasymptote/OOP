@@ -1,4 +1,4 @@
-package ru.nsu.babich.application.exception;
+package ru.nsu.babich.server.application.exception;
 
 /**
  * Base unchecked exception for application use case failures.

@@ -1,4 +1,4 @@
-package ru.nsu.babich.application.exception;
+package ru.nsu.babich.server.application.exception;
 
 /**
  * Exception raised when input validation for application layer fails.
