@@ -10,10 +10,18 @@ import ru.nsu.babich.server.domain.model.Point;
 
 public class PlayerFactory {
 
+    /**
+     * Creates a new player at the specified start position.
+     *
+     * @param movementStrategy Movement strategy for the player.
+     * @param startPosition Initial snake head position.
+     * @return Created player.
+     */
     public Player create(MovementStrategy movementStrategy, Point startPosition) {
         String id = UUID.randomUUID().toString();
-        var snake = new Snake(new ArrayDeque<>(), 0);
-        snake.getBody().add(startPosition);
+        var body = new ArrayDeque<Point>();
+        body.add(startPosition);
+        var snake = new Snake(body, 0);
         return new Player(new PlayerId(id), movementStrategy, snake, 0);
     }
 }
