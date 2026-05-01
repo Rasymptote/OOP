@@ -7,10 +7,10 @@ import ru.nsu.babich.server.domain.model.FoodType;
  */
 public interface FoodTypePickingStrategy {
 
-	/**
-	 * Selects a food type for the next generated item.
-	 *
-	 * @return Selected food type.
-	 */
-	FoodType pick();
+    /**
+     * Selects a food type for the next generated item.
+     *
+     * @return Selected food type.
+     */
+    FoodType pick();
 }

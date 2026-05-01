@@ -4,9 +4,9 @@ import java.util.ArrayDeque;
 import java.util.UUID;
 import ru.nsu.babich.server.domain.model.Player;
 import ru.nsu.babich.server.domain.model.PlayerId;
+import ru.nsu.babich.server.domain.model.Point;
 import ru.nsu.babich.server.domain.model.Snake;
 import ru.nsu.babich.server.domain.service.strategy.movement.MovementStrategy;
-import ru.nsu.babich.server.domain.model.Point;
 
 public class PlayerFactory {
 

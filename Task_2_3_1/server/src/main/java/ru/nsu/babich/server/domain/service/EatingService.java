@@ -20,7 +20,7 @@ public class EatingService {
      * Handles food consumption for all alive players on this tick.
      *
      * @param players Current alive players.
-     * @param foods Current food list.
+     * @param foods   Current food list.
      * @return Result of eating, containing updated player states and remaining foods.
      */
     public EatingResult handle(List<Player> players, List<Food> foods) {
@@ -47,26 +47,27 @@ public class EatingService {
         return new EatingResult(grownPlayers, remainingFoods);
     }
 
-    /**
-     * Result of applying eating effects, containing updated player states and remaining foods.
-     *
-     * @param players Updated player states after applying growth and score increases.
-     * @param foods Remaining foods that were not consumed this tick.
-     */
-    public record EatingResult(List<Player> players, List<Food> foods) {
-    }
-
     private Player growPlayer(Player player, int ticksToAdd) {
         if (ticksToAdd <= 0) {
             return player;
         }
-        return new Player(player.id(), player.movementStrategy(), player.snake().withAddedGrowthTicks(ticksToAdd),
-                player.score() + ticksToAdd);
+        return new Player(player.id(), player.movementStrategy(), player.snake()
+                .withAddedGrowthTicks(ticksToAdd), player.score() + ticksToAdd);
     }
 
     private Optional<Player> findEater(List<Player> players, Food food) {
         return players.stream()
-                .filter(player -> CheckCollisionService.isSameCell(player.snake().getHead(), food.position()))
+                .filter(player -> CheckCollisionService
+                        .isSameCell(player.snake().getHead(), food.position()))
                 .findFirst();
+    }
+
+    /**
+     * Result of applying eating effects, containing updated player states and remaining foods.
+     *
+     * @param players Updated player states after applying growth and score increases.
+     * @param foods   Remaining foods that were not consumed this tick.
+     */
+    public record EatingResult(List<Player> players, List<Food> foods) {
     }
 }
