@@ -1,8 +1,8 @@
 package ru.nsu.babich.client.presentation.view.controller;
 
 import javafx.fxml.FXML;
-import ru.nsu.babich.client.presentation.view.SceneManager;
 import ru.nsu.babich.client.presentation.api.WebSnakeClient;
+import ru.nsu.babich.client.presentation.view.SceneManager;
 import ru.nsu.babich.client.presentation.view.ViewPaths;
 
 /**

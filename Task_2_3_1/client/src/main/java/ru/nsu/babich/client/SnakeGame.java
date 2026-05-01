@@ -41,7 +41,8 @@ public class SnakeGame extends Application {
     private void shutdownClient() {
         try {
             client.leave();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     /**

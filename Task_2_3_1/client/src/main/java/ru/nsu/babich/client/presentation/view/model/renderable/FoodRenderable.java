@@ -16,7 +16,8 @@ public record FoodRenderable(FoodDto food) implements Renderable {
     /** {@inheritDoc} */
     @Override
     public List<Figure> toFigures() {
-        return List.of(new Figure(FigureType.CIRCLE, food.position(), 1, resolveColor(food.type())));
+        return List.of(new Figure(FigureType.CIRCLE, food.position(), 1,
+                resolveColor(food.type())));
     }
 
     private Color resolveColor(String type) {

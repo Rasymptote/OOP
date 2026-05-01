@@ -33,7 +33,8 @@ public class GameRenderer {
         for (var renderable : renderables) {
             var figures = renderable.toFigures();
             for (var figure : figures) {
-                figureRenderer.render(gridRenderer.getGraphicsContext(), gridRenderer.getGrid(), figure);
+                figureRenderer.render(gridRenderer.getGraphicsContext(),
+                        gridRenderer.getGrid(), figure);
             }
         }
     }

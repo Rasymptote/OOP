@@ -13,16 +13,20 @@ import ru.nsu.babich.server.config.StompRoutes;
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker(StompRoutes.TOPIC_PREFIX);
         config.setApplicationDestinationPrefixes(StompRoutes.APP_PREFIX);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-         registry.addEndpoint(StompRoutes.WS_ENDPOINT).setAllowedOriginPatterns("*");
+        registry.addEndpoint(StompRoutes.WS_ENDPOINT).setAllowedOriginPatterns("*");
     }
 }

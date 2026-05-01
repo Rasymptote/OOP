@@ -16,6 +16,13 @@ public class GameLoop {
     private final SimpMessagingTemplate messagingTemplate;
     private final GameStateMapper gameStateMapper;
 
+    /**
+     * Constructs game loop with required dependencies.
+     *
+     * @param gameTickUseCase Use case that performs game tick logic.
+     * @param messagingTemplate Spring component used to send messages to STOMP topics.
+     * @param gameStateMapper Mapper that converts domain game state to DTO for broadcasting.
+     */
     public GameLoop(GameTickUseCase gameTickUseCase,
                     SimpMessagingTemplate messagingTemplate,
                     GameStateMapper gameStateMapper) {
