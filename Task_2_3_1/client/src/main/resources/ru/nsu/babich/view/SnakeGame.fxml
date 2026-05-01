@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import ru.nsu.babich.client.presentation.view.grid.GridRenderer?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.nsu.babich.client.presentation.view.controller.SnakeGameController"
+            style="
+                -fx-background-color: linear-gradient(to bottom right, #0b1220, #111827);
+            ">
+    <center>
+        <GridRenderer fx:id="canvas"
+                      primaryColor="#1f2937"
+                      secondaryColor="#111827"
+                      prefWidth="600"
+                      prefHeight="600"/>
+    </center>
+</BorderPane>

@@ -1,7 +1,7 @@
-package ru.nsu.babich.presentation.view.model.figure;
+package ru.nsu.babich.client.presentation.view.model.figure;
 
 import javafx.scene.paint.Paint;
-import ru.nsu.babich.domain.model.Point;
+import ru.nsu.babich.client.presentation.api.dto.PointDto;
 
 /**
  * Describes a primitive figure for rendering.
@@ -11,5 +11,5 @@ import ru.nsu.babich.domain.model.Point;
  * @param scale Size scale relative to cell size.
  * @param color Figure fill color.
  */
-public record Figure(FigureType type, Point cell, double scale, Paint color) {
+public record Figure(FigureType type, PointDto cell, double scale, Paint color) {
 }

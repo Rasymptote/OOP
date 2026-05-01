@@ -1,8 +1,8 @@
-package ru.nsu.babich.presentation.view;
+package ru.nsu.babich.client.presentation.view;
 
 import java.util.List;
-import ru.nsu.babich.presentation.view.grid.GridRenderer;
-import ru.nsu.babich.presentation.view.model.renderable.Renderable;
+import ru.nsu.babich.client.presentation.view.grid.GridRenderer;
+import ru.nsu.babich.client.presentation.view.model.renderable.Renderable;
 
 /**
  * Renders a full game frame: grid first, then all renderable objects.

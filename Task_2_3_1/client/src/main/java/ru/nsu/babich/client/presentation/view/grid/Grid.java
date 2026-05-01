@@ -1,4 +1,4 @@
-package ru.nsu.babich.presentation.view.grid;
+package ru.nsu.babich.client.presentation.view.grid;
 
 /**
  * Provides grid dimensions and pixel mapping metrics.

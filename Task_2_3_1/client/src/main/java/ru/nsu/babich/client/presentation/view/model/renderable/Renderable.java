@@ -1,7 +1,7 @@
-package ru.nsu.babich.presentation.view.model.renderable;
+package ru.nsu.babich.client.presentation.view.model.renderable;
 
 import java.util.List;
-import ru.nsu.babich.presentation.view.model.figure.Figure;
+import ru.nsu.babich.client.presentation.view.model.figure.Figure;
 
 /**
  * Provides conversion to drawable figures.

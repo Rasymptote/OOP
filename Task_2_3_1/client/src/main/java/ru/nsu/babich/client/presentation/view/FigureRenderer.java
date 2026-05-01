@@ -1,8 +1,8 @@
-package ru.nsu.babich.presentation.view;
+package ru.nsu.babich.client.presentation.view;
 
 import javafx.scene.canvas.GraphicsContext;
-import ru.nsu.babich.presentation.view.model.figure.Figure;
-import ru.nsu.babich.presentation.view.grid.Grid;
+import ru.nsu.babich.client.presentation.view.model.figure.Figure;
+import ru.nsu.babich.client.presentation.view.grid.Grid;
 
 /**
  * Renders a single view figure on the game canvas using grid metrics.

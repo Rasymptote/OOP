@@ -1,4 +1,4 @@
-package ru.nsu.babich.presentation.view.model.figure;
+package ru.nsu.babich.client.presentation.view.model.figure;
 
 /**
  * Contains supported figure types.
