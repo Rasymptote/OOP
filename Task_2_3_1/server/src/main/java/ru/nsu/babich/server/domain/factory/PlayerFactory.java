@@ -8,6 +8,9 @@ import ru.nsu.babich.server.domain.model.Point;
 import ru.nsu.babich.server.domain.model.Snake;
 import ru.nsu.babich.server.domain.service.strategy.movement.MovementStrategy;
 
+/**
+ * Factory for creating new player instances with default initial state.
+ */
 public class PlayerFactory {
 
     /**

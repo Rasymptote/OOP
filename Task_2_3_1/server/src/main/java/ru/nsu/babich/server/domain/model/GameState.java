@@ -11,6 +11,13 @@ import java.util.Objects;
  * @param foods List of active food items on the board.
  */
 public record GameState(Field field, List<Player> players, List<Food> foods) {
+    /**
+     * Validates game state components and creates defensive copies of mutable lists.
+     *
+     * @param field Active game field dimensions.
+     * @param players List of active players in the game.
+     * @param foods List of active food items on the board.
+     */
     public GameState {
         Objects.requireNonNull(field, "field must not be null");
         Objects.requireNonNull(players, "players must not be null");

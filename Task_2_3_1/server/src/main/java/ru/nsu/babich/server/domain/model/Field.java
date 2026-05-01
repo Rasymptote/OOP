@@ -10,6 +10,12 @@ import java.util.Objects;
  */
 public record Field(int rows, int columns) {
 
+    /**
+     * Validates field dimensions.
+     *
+     * @param rows Number of field rows.
+     * @param columns Number of field columns.
+     */
     public Field {
         if (rows <= 0 || columns <= 0) {
             throw new IllegalArgumentException("Field size must be positive");

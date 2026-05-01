@@ -35,7 +35,8 @@ public class Snake {
     }
 
     /**
-     * Moves the snake to a new head position, adding a new head segment and removing the tail segment if not growing.
+     * Moves the snake to a new head position, adding a new head segment and removing the
+     * tail segment if not growing.
      *
      * @param newHead A new head position.
      * @return A new Snake instance with the updated segments and growth state.
