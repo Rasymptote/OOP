@@ -100,7 +100,8 @@ public final class CheckCollisionService {
         Map<Point, List<Player>> byHeadCell = new HashMap<>();
 
         for (Player player : players) {
-            byHeadCell.computeIfAbsent(player.snake().getHead(), ignored -> new ArrayList<>()).add(player);
+            byHeadCell.computeIfAbsent(player.snake().getHead(),
+                    ignored -> new ArrayList<>()).add(player);
         }
 
         Set<PlayerId> collided = new HashSet<>();

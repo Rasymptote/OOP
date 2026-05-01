@@ -26,8 +26,10 @@ public class GameTickService {
     public GameTickService(MovementService movementService,
                            EatingService eatingService,
                            FoodReplenishmentService foodReplenishmentService) {
-        this.movementService = Objects.requireNonNull(movementService, "movingService must not be null");
-        this.eatingService = Objects.requireNonNull(eatingService, "eatingService must not be null");
+        this.movementService = Objects.requireNonNull(movementService,
+                "movingService must not be null");
+        this.eatingService = Objects.requireNonNull(eatingService,
+                "eatingService must not be null");
         this.foodReplenishmentService = Objects.requireNonNull(foodReplenishmentService,
                 "foodReplenishmentService must not be null");
     }
@@ -70,7 +72,8 @@ public class GameTickService {
                 .toList();
     }
 
-    private GameState applyEatingAndReplenishment(Field field, List<Player> alivePlayers, List<Food> foods) {
+    private GameState applyEatingAndReplenishment(Field field, List<Player> alivePlayers,
+                                                  List<Food> foods) {
         var eatingResult = eatingService.handle(alivePlayers, foods);
         List<Food> replenishedFoods = foodReplenishmentService.replenish(
                 field,

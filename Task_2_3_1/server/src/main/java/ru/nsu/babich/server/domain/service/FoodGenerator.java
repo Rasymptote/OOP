@@ -30,9 +30,12 @@ public class FoodGenerator {
     public FoodGenerator(CellPickingStrategy cellPickingStrategy,
                          FoodTypePickingStrategy foodTypePickingStrategy,
                          FreeCellsService freeCellsService) {
-        this.cellPickingStrategy = Objects.requireNonNull(cellPickingStrategy, "cellPickingStrategy must not be null");
-        this.foodTypePickingStrategy = Objects.requireNonNull(foodTypePickingStrategy, "foodTypePickingStrategy must not be null");
-        this.freeCellsService = Objects.requireNonNull(freeCellsService, "freeCellsService must not be null");
+        this.cellPickingStrategy = Objects.requireNonNull(cellPickingStrategy,
+                "cellPickingStrategy must not be null");
+        this.foodTypePickingStrategy = Objects.requireNonNull(foodTypePickingStrategy,
+                "foodTypePickingStrategy must not be null");
+        this.freeCellsService = Objects.requireNonNull(freeCellsService,
+                "freeCellsService must not be null");
     }
 
     /**

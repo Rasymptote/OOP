@@ -41,11 +41,18 @@ public class EatingService {
                 .map(player -> growPlayer(player, growthByPlayer.getOrDefault(player.id(), 0)))
                 .toList();
 
-        List<Food> remainingFoods = foods.stream().filter(food -> !eatenFoods.contains(food)).toList();
+        List<Food> remainingFoods = foods.stream().filter(food ->
+                !eatenFoods.contains(food)).toList();
 
         return new EatingResult(grownPlayers, remainingFoods);
     }
 
+    /**
+     * Result of applying eating effects, containing updated player states and remaining foods.
+     *
+     * @param players Updated player states after applying growth and score increases.
+     * @param foods Remaining foods that were not consumed this tick.
+     */
     public record EatingResult(List<Player> players, List<Food> foods) {
     }
 

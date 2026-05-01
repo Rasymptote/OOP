@@ -22,7 +22,8 @@ public class FoodReplenishmentService {
      * @param targetFoodCount Desired number of food items kept on the field.
      */
     public FoodReplenishmentService(FoodGenerator foodGenerator, int targetFoodCount) {
-        this.foodGenerator = Objects.requireNonNull(foodGenerator, "foodGenerator must not be null");
+        this.foodGenerator = Objects.requireNonNull(foodGenerator,
+                "foodGenerator must not be null");
         if (targetFoodCount < 0) {
             throw new IllegalArgumentException("targetFoodCount must be non-negative");
         }
