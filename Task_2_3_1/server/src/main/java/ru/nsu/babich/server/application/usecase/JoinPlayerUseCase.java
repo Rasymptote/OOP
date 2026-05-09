@@ -2,6 +2,8 @@ package ru.nsu.babich.server.application.usecase;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.application.exception.UseCaseException;
 import ru.nsu.babich.server.application.exception.ValidationException;
 import ru.nsu.babich.server.application.port.GameStateRepository;
@@ -14,6 +16,7 @@ import ru.nsu.babich.server.domain.service.strategy.movement.MovementStrategy;
 /**
  * Adds a new player to the current game state.
  */
+@Component
 public class JoinPlayerUseCase {
     private final GameStateRepository gameStateRepository;
     private final SessionRepository sessionRepository;
@@ -28,6 +31,7 @@ public class JoinPlayerUseCase {
      * @param freeCellsService Domain service that computes free cells on the field.
      * @param playerFactory Factory for creating new player instances with default initial state.
      */
+
     public JoinPlayerUseCase(GameStateRepository gameStateRepository,
                              SessionRepository sessionRepository,
                              FreeCellsService freeCellsService,

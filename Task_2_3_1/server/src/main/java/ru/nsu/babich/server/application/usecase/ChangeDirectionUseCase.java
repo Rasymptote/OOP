@@ -2,6 +2,8 @@ package ru.nsu.babich.server.application.usecase;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.application.exception.UseCaseException;
 import ru.nsu.babich.server.application.exception.ValidationException;
 import ru.nsu.babich.server.application.port.GameStateRepository;
@@ -12,6 +14,7 @@ import ru.nsu.babich.server.domain.model.GameState;
 /**
  * Changes movement direction for a player identified by session id.
  */
+@Component
 public class ChangeDirectionUseCase {
     private final GameStateRepository gameStateRepository;
     private final SessionRepository sessionRepository;

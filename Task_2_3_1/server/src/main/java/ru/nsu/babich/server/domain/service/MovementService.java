@@ -1,12 +1,15 @@
 package ru.nsu.babich.server.domain.service;
 
 import java.util.Objects;
+
+import org.springframework.stereotype.Service;
 import ru.nsu.babich.server.domain.model.Snake;
 import ru.nsu.babich.server.domain.service.strategy.movement.MovementStrategy;
 
 /**
  * Domain service that applies one snake movement step.
  */
+@Service
 public class MovementService {
     /**
      * Moves the snake according to the movement strategy.

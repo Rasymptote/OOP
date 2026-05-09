@@ -2,6 +2,8 @@ package ru.nsu.babich.server.application.usecase;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.application.exception.UseCaseException;
 import ru.nsu.babich.server.application.port.GameStateRepository;
 import ru.nsu.babich.server.application.port.SessionRepository;
@@ -10,6 +12,7 @@ import ru.nsu.babich.server.domain.model.GameState;
 /**
  * Removes a player from the game by session id.
  */
+@Component
 public class LeavePlayerUseCase {
     private final SessionRepository sessionRepository;
     private final GameStateRepository gameStateRepository;

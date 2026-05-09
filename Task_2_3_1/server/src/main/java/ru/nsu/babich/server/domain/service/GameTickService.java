@@ -2,6 +2,8 @@ package ru.nsu.babich.server.domain.service;
 
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.stereotype.Service;
 import ru.nsu.babich.server.domain.model.Field;
 import ru.nsu.babich.server.domain.model.Food;
 import ru.nsu.babich.server.domain.model.GameState;
@@ -10,6 +12,7 @@ import ru.nsu.babich.server.domain.model.Player;
 /**
  * Domain service that advances the game by one tick.
  */
+@Service
 public class GameTickService {
 
     private final MovementService movementService;

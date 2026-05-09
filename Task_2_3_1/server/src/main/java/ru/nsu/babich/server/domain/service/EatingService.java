@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+
+import org.springframework.stereotype.Service;
 import ru.nsu.babich.server.domain.model.Food;
 import ru.nsu.babich.server.domain.model.Player;
 import ru.nsu.babich.server.domain.model.PlayerId;
@@ -14,6 +16,7 @@ import ru.nsu.babich.server.domain.model.PlayerId;
 /**
  * Domain service that applies food consumption effects.
  */
+@Service
 public class EatingService {
 
     /**

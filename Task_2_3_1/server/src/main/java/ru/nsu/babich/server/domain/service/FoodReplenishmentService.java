@@ -3,6 +3,9 @@ package ru.nsu.babich.server.domain.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import ru.nsu.babich.server.domain.model.Field;
 import ru.nsu.babich.server.domain.model.Food;
 import ru.nsu.babich.server.domain.model.Player;
@@ -10,6 +13,7 @@ import ru.nsu.babich.server.domain.model.Player;
 /**
  * Domain service that replenishes food up to a configured amount.
  */
+@Service
 public class FoodReplenishmentService {
 
     private final FoodGenerator foodGenerator;
@@ -21,7 +25,8 @@ public class FoodReplenishmentService {
      * @param foodGenerator Food generator used to spawn missing items.
      * @param targetFoodCount Desired number of food items kept on the field.
      */
-    public FoodReplenishmentService(FoodGenerator foodGenerator, int targetFoodCount) {
+    public FoodReplenishmentService(FoodGenerator foodGenerator,
+                                    @Value("${game.food.replenish-count:3}") int targetFoodCount) {
         this.foodGenerator = Objects.requireNonNull(foodGenerator,
                 "foodGenerator must not be null");
         if (targetFoodCount < 0) {
