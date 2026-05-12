@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import org.springframework.stereotype.Service;
 import ru.nsu.babich.server.domain.model.Field;
 import ru.nsu.babich.server.domain.model.Food;
 import ru.nsu.babich.server.domain.model.Player;
@@ -13,6 +15,7 @@ import ru.nsu.babich.server.domain.model.Point;
 /**
  * Domain service for calculating currently free cells on the field.
  */
+@Service
 public class FreeCellsService {
 
     /**

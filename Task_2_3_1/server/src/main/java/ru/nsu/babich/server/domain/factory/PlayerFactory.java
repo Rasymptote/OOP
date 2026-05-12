@@ -2,6 +2,8 @@ package ru.nsu.babich.server.domain.factory;
 
 import java.util.ArrayDeque;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.domain.model.Player;
 import ru.nsu.babich.server.domain.model.PlayerId;
 import ru.nsu.babich.server.domain.model.Point;
@@ -11,6 +13,7 @@ import ru.nsu.babich.server.domain.service.strategy.movement.MovementStrategy;
 /**
  * Factory for creating new player instances with default initial state.
  */
+@Component
 public class PlayerFactory {
 
     /**

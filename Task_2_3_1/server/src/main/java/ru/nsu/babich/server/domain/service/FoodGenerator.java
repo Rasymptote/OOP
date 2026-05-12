@@ -3,6 +3,8 @@ package ru.nsu.babich.server.domain.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.domain.model.Field;
 import ru.nsu.babich.server.domain.model.Food;
 import ru.nsu.babich.server.domain.model.FoodType;
@@ -14,6 +16,7 @@ import ru.nsu.babich.server.domain.service.strategy.foodtypepicking.FoodTypePick
 /**
  * Generates food items for the current game state.
  */
+@Component
 public class FoodGenerator {
 
     private final CellPickingStrategy cellPickingStrategy;
