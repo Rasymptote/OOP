@@ -4,7 +4,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.nsu.babich.server.application.usecase.GameTickUseCase;
-import ru.nsu.babich.server.config.StompRoutes;
+import ru.nsu.babich.server.config.SnakeStompRoutes;
 import ru.nsu.babich.server.presentation.mapper.GameStateMapper;
 
 /**
@@ -37,6 +37,6 @@ public class GameLoop {
     @Scheduled(fixedRateString = "${game.tick-duration:1000}")
     public void runTick() {
         var state = gameTickUseCase.execute();
-        messagingTemplate.convertAndSend(StompRoutes.STATE_TOPIC, gameStateMapper.toDto(state));
+        messagingTemplate.convertAndSend(SnakeStompRoutes.STATE_TOPIC, gameStateMapper.toDto(state));
     }
 }

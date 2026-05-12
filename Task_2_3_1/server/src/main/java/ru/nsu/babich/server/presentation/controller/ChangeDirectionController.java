@@ -7,7 +7,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 import ru.nsu.babich.server.application.exception.ValidationException;
 import ru.nsu.babich.server.application.usecase.ChangeDirectionUseCase;
-import ru.nsu.babich.server.config.StompRoutes;
+import ru.nsu.babich.server.config.SnakeStompRoutes;
 import ru.nsu.babich.server.domain.model.Direction;
 
 /**
@@ -28,7 +28,7 @@ public class ChangeDirectionController {
      * @param sessionId STOMP session identifier.
      * @param direction Direction value as string.
      */
-    @MessageMapping(StompRoutes.DIRECTION_MAPPING)
+    @MessageMapping(SnakeStompRoutes.DIRECTION_MAPPING)
     public void onChangeDirection(
             @Header("simpSessionId") String sessionId,
             @Payload final String direction

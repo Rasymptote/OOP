@@ -5,7 +5,7 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-import ru.nsu.babich.server.config.StompRoutes;
+import ru.nsu.babich.server.config.SnakeStompRoutes;
 
 /**
  * Configures STOMP over WebSocket endpoints and broker routes.
@@ -18,8 +18,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker(StompRoutes.TOPIC_PREFIX);
-        config.setApplicationDestinationPrefixes(StompRoutes.APP_PREFIX);
+        config.enableSimpleBroker(SnakeStompRoutes.TOPIC_PREFIX);
+        config.setApplicationDestinationPrefixes(SnakeStompRoutes.APP_PREFIX);
     }
 
     /**
@@ -27,6 +27,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint(StompRoutes.WS_ENDPOINT).setAllowedOriginPatterns("*");
+        registry.addEndpoint(SnakeStompRoutes.WS_ENDPOINT).setAllowedOriginPatterns("*");
     }
 }

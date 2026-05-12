@@ -5,7 +5,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import ru.nsu.babich.server.application.usecase.LeavePlayerUseCase;
-import ru.nsu.babich.server.config.StompRoutes;
+import ru.nsu.babich.server.config.SnakeStompRoutes;
 import ru.nsu.babich.server.presentation.mapper.GameStateMapper;
 
 /**
@@ -43,6 +43,6 @@ public class WebSocketEventListener {
     public void handleSessionDisconnect(SessionDisconnectEvent event) {
         var sessionId = event.getSessionId();
         var state = leavePlayerUseCase.execute(sessionId);
-        messagingTemplate.convertAndSend(StompRoutes.STATE_TOPIC, gameStateMapper.toDto(state));
+        messagingTemplate.convertAndSend(SnakeStompRoutes.STATE_TOPIC, gameStateMapper.toDto(state));
     }
 }

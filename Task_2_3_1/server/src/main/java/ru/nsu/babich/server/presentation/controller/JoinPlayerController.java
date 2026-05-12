@@ -6,7 +6,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import ru.nsu.babich.server.application.usecase.JoinPlayerUseCase;
-import ru.nsu.babich.server.config.StompRoutes;
+import ru.nsu.babich.server.config.SnakeStompRoutes;
 import ru.nsu.babich.server.domain.service.strategy.movement.BufferedMovementStrategy;
 
 /**
@@ -29,7 +29,7 @@ public class JoinPlayerController {
      *
      * @param header STOMP message header accessor.
      */
-    @MessageMapping(StompRoutes.JOIN_MAPPING)
+    @MessageMapping(SnakeStompRoutes.JOIN_MAPPING)
     public void onJoinPlayer(
             SimpMessageHeaderAccessor header
     ) {

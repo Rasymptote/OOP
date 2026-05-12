@@ -3,8 +3,8 @@ package ru.nsu.babich.server.config;
 /**
  * Stores STOMP endpoints used by the server.
  */
-public final class StompRoutes {
-    private StompRoutes() {
+public final class SnakeStompRoutes {
+    private SnakeStompRoutes() {
     }
 
     public static final String WS_ENDPOINT = "/ws";
