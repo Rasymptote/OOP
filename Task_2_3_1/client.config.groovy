@@ -1,9 +1,12 @@
 locale "ru"
 
 ui {
-    board {
+    window {
         width 600
         height 600
+    }
+
+    board {
         primaryColor "#1f2937"
         secondaryColor "#111827"
     }
