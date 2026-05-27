@@ -18,3 +18,28 @@ ui {
         foodPoison "#a855f7"
     }
 }
+
+i18n {
+    ru {
+        windowTitle "Змейка"
+        menu {
+            title "ЗМЕЙКА"
+            foodHeader "Еда"
+            foodNormal "■ Обычная"
+            foodBonus "■ Бонус"
+            foodPoison "■ Яд"
+            startGame "Начать игру"
+        }
+    }
+    en {
+        windowTitle "Snake Game"
+        menu {
+            title "SNAKE GAME"
+            foodHeader "Food"
+            foodNormal "■ Normal food"
+            foodBonus "■ Bonus"
+            foodPoison "■ Poison"
+            startGame "Start game"
+        }
+    }
+}

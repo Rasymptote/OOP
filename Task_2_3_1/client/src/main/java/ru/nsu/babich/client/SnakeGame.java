@@ -33,7 +33,7 @@ public class SnakeGame extends Application {
         showMenu();
 
         applyWindowConfig(stage, clientConfig);
-        stage.setTitle("Snake Game");
+        applyWindowTitle(stage, clientConfig);
         stage.setOnCloseRequest(e -> shutdownClient());
         stage.show();
     }
@@ -62,6 +62,19 @@ public class SnakeGame extends Application {
         if (window.height() > 0) {
             stage.setHeight(window.height());
         }
+    }
+
+    private void applyWindowTitle(Stage stage, ClientConfig config) {
+        if (config == null || config.i18n() == null) {
+            stage.setTitle("Snake Game");
+            return;
+        }
+        var localeText = config.i18n().resolve(config.locale());
+        if (localeText == null || localeText.windowTitle() == null) {
+            stage.setTitle("Snake Game");
+            return;
+        }
+        stage.setTitle(localeText.windowTitle());
     }
 
     private void shutdownClient() {

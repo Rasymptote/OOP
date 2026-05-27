@@ -4,6 +4,7 @@ import ru.nsu.babich.dsl.contracts.Configurable;
 
 public record ClientConfig(
         String locale,
-        UiConfig ui
+        UiConfig ui,
+        I18nConfig i18n
 ) implements Configurable {
 }
