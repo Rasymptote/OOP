@@ -3,6 +3,10 @@ package ru.nsu.babich.client.presentation.view.controller;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import ru.nsu.babich.client.dsl.ClientConfig;
+import ru.nsu.babich.client.dsl.ColorPalette;
+import ru.nsu.babich.client.dsl.UiConfig;
 import ru.nsu.babich.client.presentation.api.WebSnakeClient;
 import ru.nsu.babich.client.presentation.api.dto.FieldDto;
 import ru.nsu.babich.client.presentation.api.dto.GameStateDto;
@@ -11,6 +15,7 @@ import ru.nsu.babich.client.presentation.view.GameRenderer;
 import ru.nsu.babich.client.presentation.view.grid.GridRenderer;
 import ru.nsu.babich.client.presentation.view.mapper.GameStateMapper;
 import ru.nsu.babich.client.presentation.view.mapper.KeyboardDirectionMapper;
+import ru.nsu.babich.client.presentation.view.model.renderable.RenderablePalette;
 
 /**
  * Controller for the active game scene.
@@ -45,8 +50,31 @@ public class SnakeGameController implements Consumer<GameStateDto> {
      *
      * @param webSnakeClient Connected client instance.
      */
-    public void init(WebSnakeClient webSnakeClient) {
+    public void init(WebSnakeClient webSnakeClient, ClientConfig config) {
         this.webSnakeClient = webSnakeClient;
+        applyConfig(config);
+    }
+
+    private void applyConfig(ClientConfig config) {
+        if (config == null) {
+            return;
+        }
+        UiConfig ui = config.ui();
+        if (ui == null) {
+            return;
+        }
+        if (ui.board() != null) {
+            if (ui.board().primaryColor() != null) {
+                canvas.setPrimaryColor(Color.web(ui.board().primaryColor()));
+            }
+            if (ui.board().secondaryColor() != null) {
+                canvas.setSecondaryColor(Color.web(ui.board().secondaryColor()));
+            }
+        }
+        ColorPalette palette = ui.palette();
+        if (palette != null) {
+            RenderablePalette.apply(palette);
+        }
     }
 
     /** {@inheritDoc} */

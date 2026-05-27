@@ -31,28 +31,18 @@
                         -fx-background-radius: 16;
                   ">
 
-                <Label text="Food"
+                <Label fx:id="normalFoodLabel" text="■ Normal food"
                        style="
-                            -fx-text-fill: #cbd5e1;
-                            -fx-font-size: 14px;
-                            -fx-font-weight: bold;
-                       "/>
-
-                <Label text="■ Normal food"
-                       style="
-                            -fx-text-fill: #ff5c7a;
                             -fx-font-size: 13px;
                        "/>
 
-                <Label text="■ Bonus"
+                <Label fx:id="bonusFoodLabel" text="■ Bonus"
                        style="
-                            -fx-text-fill: #ffd166;
                             -fx-font-size: 13px;
                        "/>
 
-                <Label text="■ Poison"
+                <Label fx:id="poisonFoodLabel" text="■ Poison"
                        style="
-                            -fx-text-fill: #a855f7;
                             -fx-font-size: 13px;
                        "/>
 

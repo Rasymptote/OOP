@@ -20,19 +20,19 @@ public class SnakeGame extends Application {
 
     private WebSnakeClient client;
     private SceneManager sceneManager;
+    private ClientConfig clientConfig;
 
     /** {@inheritDoc} */
     @Override
     public void start(Stage stage) throws IOException {
-        var config = loadConfig();
+        clientConfig = loadConfig();
         client = new WebSnakeClient(StompRoutes.SERVER_URL);
 
         sceneManager = new SceneManager(stage);
 
         showMenu();
 
-        stage.setWidth(800);
-        stage.setHeight(600);
+        applyWindowConfig(stage, clientConfig);
         stage.setTitle("Snake Game");
         stage.setOnCloseRequest(e -> shutdownClient());
         stage.show();
@@ -48,7 +48,20 @@ public class SnakeGame extends Application {
 
     private void showMenu() {
         MenuController controller = sceneManager.setScene(ViewPaths.MENU);
-        controller.init(client, sceneManager);
+        controller.init(client, sceneManager, clientConfig);
+    }
+
+    private void applyWindowConfig(Stage stage, ClientConfig config) {
+        if (config == null || config.ui() == null || config.ui().window() == null) {
+            return;
+        }
+        var window = config.ui().window();
+        if (window.width() > 0) {
+            stage.setWidth(window.width());
+        }
+        if (window.height() > 0) {
+            stage.setHeight(window.height());
+        }
     }
 
     private void shutdownClient() {

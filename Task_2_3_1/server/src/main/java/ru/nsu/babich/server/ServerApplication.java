@@ -21,7 +21,7 @@ public class ServerApplication {
         var builder = new ServerConfigBuilder();
         var loader = new ConfigLoader<>(builder);
         var path = Path.of("server.config.groovy");
-        var config = loader.load(path);
+//        var config = loader.load(path);
 
         SpringApplication.run(ServerApplication.class, args);
     }
