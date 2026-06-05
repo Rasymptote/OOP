@@ -16,7 +16,7 @@
         <VBox alignment="CENTER" spacing="30"
               style="-fx-padding: 50;">
 
-            <Label text="SNAKE GAME"
+            <Label fx:id="menuTitleLabel" text="SNAKE GAME"
                    style="
                         -fx-text-fill: white;
                         -fx-font-size: 34px;
@@ -31,28 +31,25 @@
                         -fx-background-radius: 16;
                   ">
 
-                <Label text="Food"
+                <Label fx:id="foodHeaderLabel" text="Food"
                        style="
                             -fx-text-fill: #cbd5e1;
                             -fx-font-size: 14px;
                             -fx-font-weight: bold;
                        "/>
 
-                <Label text="■ Normal food"
+                <Label fx:id="normalFoodLabel" text="■ Normal food"
                        style="
-                            -fx-text-fill: #ff5c7a;
                             -fx-font-size: 13px;
                        "/>
 
-                <Label text="■ Bonus"
+                <Label fx:id="bonusFoodLabel" text="■ Bonus"
                        style="
-                            -fx-text-fill: #ffd166;
                             -fx-font-size: 13px;
                        "/>
 
-                <Label text="■ Poison"
+                <Label fx:id="poisonFoodLabel" text="■ Poison"
                        style="
-                            -fx-text-fill: #a855f7;
                             -fx-font-size: 13px;
                        "/>
 
@@ -60,7 +57,7 @@
 
             <VBox style="-fx-padding: 10 0 0 0;"/>
 
-            <Button text="Start game"
+            <Button fx:id="startGameButton" text="Start game"
                     onAction="#startGame"
                     style="
                         -fx-background-color: #3b82f6;

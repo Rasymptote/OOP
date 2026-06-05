@@ -2,3 +2,4 @@ rootProject.name = 'Task_2_3_1'
 
 include ':server'
 include ':client'
+include ':common'
